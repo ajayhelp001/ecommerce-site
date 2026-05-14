@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
+import ThemeButton from '../GlobelComponent/ThemeButton'
 
 const Register = () => {
 
@@ -109,7 +110,7 @@ const Register = () => {
                     <label className="form-check-label" for="policy">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</label>
                 </div>
                 {success && <div className='col-12'><p className='text-success bg-success bg-opacity-25 p-2 border border-1 border-success text-center m-0'>{success}</p></div>}
-                <div className="col-12"><button type="submit" className="btn themebtn fill w-100">{loding ? 'REGISTER...' : 'REGISTER' }</button></div>
+                <div className="col-12"><ThemeButton btnType={'submit'} btnFill={true} btnTitle={loding ? 'REGISTER...' : 'REGISTER' } /></div>
             </div>
         </form>
     </>

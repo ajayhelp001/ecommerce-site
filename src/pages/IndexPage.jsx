@@ -102,7 +102,7 @@ const IndexPage = () => {
                     Array.isArray(postData) && postData.map((post, index) => (
                         <div key={index} className="col-lg-4 col-sm-6">
                             <PostCard
-                                postImg={post.image? post.image : 'assets/images/blog-6.jpg'}
+                                postImg={post.image? post.image : '/assets/images/blog-6.jpg'}
                                 postTitle={post.title}
                                 postDiscription={post.body}
                                 postViews={post.views}

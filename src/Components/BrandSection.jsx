@@ -8,16 +8,16 @@ const BrandSection = () => {
 
 
     const brandLog = [
-        'assets/images/client-1.jpg',
-        'assets/images/client-2.jpg',
-        'assets/images/client-3.jpg',
-        'assets/images/client-4.jpg',
-        'assets/images/client-5.jpg',
-        'assets/images/client-1.jpg',
-        'assets/images/client-2.jpg',
-        'assets/images/client-3.jpg',
-        'assets/images/client-4.jpg',
-        'assets/images/client-5.jpg'
+        '/assets/images/client-1.jpg',
+        '/assets/images/client-2.jpg',
+        '/assets/images/client-3.jpg',
+        '/assets/images/client-4.jpg',
+        '/assets/images/client-5.jpg',
+        '/assets/images/client-1.jpg',
+        '/assets/images/client-2.jpg',
+        '/assets/images/client-3.jpg',
+        '/assets/images/client-4.jpg',
+        '/assets/images/client-5.jpg'
     ]
   return (
     <section className="clientsection m-0">

@@ -1,10 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const ThemeButton = ({btnLink, btnTitle = "Shop Now", btnFill, btnClass, clickEvent}) => {
+const ThemeButton = ({btnLink, btnType, btnTitle = "Shop Now", btnFill, btnClass, clickEvent}) => {
   return (
     <>
-        <Link onClick={clickEvent} to={btnLink} className={`btn themebtn ${btnFill ? 'fill' : ''} ${btnClass}`}>{btnTitle} <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></Link>
+    {
+      btnType ? 
+      <button type={btnType} className={`${btnClass ? btnClass : ''} ${btnFill ? 'fill' : ''} btn themebtn`}>{btnTitle}<span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
+      :
+      <Link onClick={clickEvent} to={btnLink} className={`${btnClass ? btnClass : ''} ${btnFill ? 'fill' : ''} btn themebtn`} >{btnTitle} <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></Link>
+    }
     </>
   )
 }

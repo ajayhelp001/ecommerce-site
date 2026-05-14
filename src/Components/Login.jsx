@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
+import ThemeButton from '../GlobelComponent/ThemeButton'
 
 export const Login = ({forgotPassComponent}) => {
 
@@ -113,7 +114,10 @@ export const Login = ({forgotPassComponent}) => {
                     </div>
                 </div>
                 {success && <div className='col-12'><p className='text-success bg-success bg-opacity-25 p-2 border border-1 border-success text-center m-0'>{success}</p></div>}
-                <div className="col-12"><button type="submit" className="btn themebtn fill w-100">{loding ? 'LOGED IN...' : 'LOG IN' }<span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button></div>
+                <div className="col-12">
+                    <ThemeButton btnType={'submit'} btnFill={true} btnTitle={loding ? 'LOGED IN...' : 'LOG IN' } />
+                    {/* <button type="submit" className="btn themebtn fill w-100">{loding ? 'LOGED IN...' : 'LOG IN' }<span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button> */}
+                </div>
             </div>
         </form>
     </>

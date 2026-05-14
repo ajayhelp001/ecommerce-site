@@ -5,19 +5,19 @@ import SectionHeading from '../GlobelComponent/SectionHeading'
 const ChooseUsSection = () => {
   const categoryItem = [
     {
-      catImage : 'assets/images/choose-product-card-img1.png',
+      catImage : '/assets/images/choose-product-card-img1.png',
       catLink : '/',
       catTitle : 'Face',
       catType : 'care'
     },
     {
-      catImage : 'assets/images/choose-product-card-img3.png',
+      catImage : '/assets/images/choose-product-card-img3.png',
       catLink : '/',
       catTitle : 'Hair',
       catType : 'care'
     },
     {
-      catImage : 'assets/images/choose-product-card-img2.png',
+      catImage : '/assets/images/choose-product-card-img2.png',
       catLink : '/',
       catTitle : 'Body',
       catType : 'Health'

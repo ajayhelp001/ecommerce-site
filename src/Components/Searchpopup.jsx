@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
+import ThemeButton from '../GlobelComponent/ThemeButton';
 
 const Searchpopup = ({closePopup}) => {  
 
@@ -72,6 +73,7 @@ const Searchpopup = ({closePopup}) => {
                 </form>
             </div>
             <div class="modal-footer">
+                <ThemeButton btnType={'button'} btnTitle='Close' onClick={closePopup}  data-bs-dismiss="modal"/>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={closePopup}>Close</button>
             </div>
             </div>

@@ -1,0 +1,18 @@
+.product-slider {display: flex; align-items: start; gap: 10px 20px;}
+.thumb-slider {max-height: 450px; height: 100%; overflow: hidden auto; flex: 0 0 auto;}
+.thumb-slider .swiper-wrapper {height: 100%; width: 80px; padding-right: 4px; flex: 0 0 auto; overflow-y: auto; display: flex; gap: 8px; flex-direction: column;}
+.thumb-slider .swiper-slide { height: 100px !important; cursor: pointer;}
+.thumb-slider .swiper-slide .productImg { height: 100%; border: 1px solid rgba(0, 0, 0, 0); display: flex; align-items: center; justify-content: center; padding: 5px; position: relative; transition: all ease-in-out .3s;}
+.thumb-slider .swiper-slide .productImg::before {content: ""; width: 100%; height: 100%; position: absolute; inset: 0; margin: auto; background-color: var(--black-60); transition: all ease-in-out .3s;}
+.thumb-slider .swiper-slide .productImg:hover, .thumb-slider .swiper-slide.swiper-slide-thumb-active .productImg {border-color: var(--theme1);}
+.thumb-slider .swiper-slide .productImg:hover::before, .thumb-slider .swiper-slide.swiper-slide-thumb-active .productImg::before {opacity: 0; visibility: hidden;}
+.main-slider, .main-slider * {width: 100% !important;}
+.main-slider {border-radius: 10px; background-color: #f2f2f2;}
+
+
+@media screen and (max-width : 576px) {
+  .product-slider {flex-direction: column-reverse;}
+  .thumb-slider {overflow: auto hidden; max-width: 100%; }
+  .thumb-slider .swiper-wrapper {flex-direction: row; width: 100%;}
+  .thumb-slider .swiper-slide { width: 55px; min-height: unset; min-width: 55px; height: 60px !important;}
+}
