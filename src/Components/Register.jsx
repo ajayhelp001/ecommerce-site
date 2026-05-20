@@ -83,21 +83,21 @@ const Register = () => {
                 <div className="col-12">
                     <div className="form-floating">
                         <input onChange={handalChange} type="text" className={`${nameError ? 'border-danger' : ''} form-control`} name='name' value={inputValue.name} placeholder="Username" />
-                        <label for="user"  >Username</label>
+                        <label htmlFor="user"  >Username</label>
                     </div>
                     {nameError && <p className='text-danger mt-1 mb-0 text-sm'>{nameError}</p>}
                 </div>
                 <div className="col-12">
                     <div className="form-floating">
                         <input onChange={handalChange} type="email" className={`${emailError ? 'border-danger' : ''} form-control`} name='email' value={inputValue.email} placeholder="name@example.com" />
-                        <label for="floatingInput">Email Address</label>
+                        <label htmlFor="floatingInput">Email Address</label>
                     </div>
                     {emailError && <p className='text-danger mt-1 mb-0 text-sm'>{emailError}</p>}
                 </div>
                 <div className="col-12">
                     <div className="form-floating password">
                         <input onChange={handalChange} type={showpass ? 'text' : 'password'} className={`${passwordError ? 'border-danger' : ''} form-control`} name='password' value={inputValue.password} placeholder="******" />
-                        <label for="password">Your Password</label>
+                        <label htmlFor="password">Your Password</label>
                         <div className={`visibalty ${showpass ? 'show' : ''}`} onClick={() => setShowPass(!showpass)}>
                             <span className="closeEye"><img src="/assets/images/icon/close_eye.svg" alt="password unvisibile" /></span>
                             <span className="openEye"><img src="/assets/images/icon/eye.svg" alt="password visibile" /></span>
@@ -107,7 +107,7 @@ const Register = () => {
                 </div>
                 <div className="col-12 checkbox d-flex align-items-start">
                     <input className="form-check-input" type="checkbox" value="policy" id="policy" />
-                    <label className="form-check-label" for="policy">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</label>
+                    <label className="form-check-label" htmlFor="policy">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</label>
                 </div>
                 {success && <div className='col-12'><p className='text-success bg-success bg-opacity-25 p-2 border border-1 border-success text-center m-0'>{success}</p></div>}
                 <div className="col-12"><ThemeButton btnType={'submit'} btnFill={true} btnTitle={loding ? 'REGISTER...' : 'REGISTER' } /></div>

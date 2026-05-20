@@ -112,14 +112,14 @@ const ReviewForm = ({productId}) => {
                     <div className="col-sm-6">
                         <div className="form-floating">
                             <input type="text" className={`${nameError ? 'border-danger' : ''} form-control`} onChange={(e) => setNameValue(e.target.value)} value={nameValue} placeholder="Name" />
-                            <label for="floatingInput">Your Name</label>
+                            <label htmlFor="floatingInput">Your Name</label>
                         </div>
                         {nameError && <p className='text-danger mt-1 mb-0 text-sm'>{nameError}</p>}
                     </div>
                     <div className="col-sm-6">
                         <div className="form-floating">
                             <input type="email" className={`${emailError ? 'border-danger' : ''} form-control`} onChange={(e) => setEmailValue(e.target.value)} value={emailValue} placeholder="name@example.com" />
-                            <label for="floatingInput2">Your Email</label>
+                            <label htmlFor="floatingInput2">Your Email</label>
                         </div>
                         {emailError && <p className='text-danger mt-1 mb-0 text-sm'>{emailError}</p>}
                     </div>

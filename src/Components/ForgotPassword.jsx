@@ -18,7 +18,7 @@ const ForgotPassword = () => {
                                         <div className="col-12">
                                             <div className="form-floating">
                                                 <input type="email" className="form-control" placeholder="name@example.com" />
-                                                <label for="floatingInput">Email Address</label>
+                                                <label htmlFor="floatingInput">Email Address</label>
                                             </div>
                                         </div>
                                         <div className="col-12"><button type="submit" className="btn themebtn fill w-100" id="p_submit">SUBMIT<span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button></div>

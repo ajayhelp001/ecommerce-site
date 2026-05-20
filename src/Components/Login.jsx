@@ -89,14 +89,14 @@ export const Login = ({forgotPassComponent}) => {
                 <div className="col-12">
                     <div className="form-floating">
                         <input onChange={handalChange} type="email" name='email' value={inputValue.email} className={`${emailError ? 'border-danger' : ''} form-control`} placeholder="name@example.com" />
-                        <label for="floatingInput">Email Address</label>
+                        <label htmlFor="floatingInput">Email Address</label>
                     </div>
                     {emailError && <p className='text-danger mt-1 mb-0 text-sm'>{emailError}</p>}
                 </div>
                 <div className="col-12">
                     <div className="form-floating password">
                         <input onChange={handalChange} type={showpass ? 'text' : 'password'}  name='password' value={inputValue.password}className={`${passwordError ? 'border-danger' : ''} form-control`} placeholder="******" />
-                        <label for="password">Your Password</label>
+                        <label htmlFor="password">Your Password</label>
                         <div className={`visibalty ${showpass ? 'show' : ''}`} onClick={() => setShowPass(!showpass)}>
                             <span className="closeEye"><img src="/assets/images/icon/close_eye.svg" alt="password unvisibile" /></span>
                             <span className="openEye"><img src="/assets/images/icon/eye.svg" alt="password visibile" /></span>
@@ -108,7 +108,7 @@ export const Login = ({forgotPassComponent}) => {
                     <div className="row align-items-center">
                         <div className="col checkbox">
                             <input className="form-check-input" type="checkbox" value="Remember" id="flexCheckDefault" />
-                            <label className="form-check-label" for="flexCheckDefault">Remember me</label>
+                            <label className="form-check-label" htmlFor="flexCheckDefault">Remember me</label>
                         </div>
                         {/* <div className="col-auto"><Link to={'/forgot-password'} className="lostPassword" id="forgot_password">Lost Password?</Link></div> */}
                     </div>

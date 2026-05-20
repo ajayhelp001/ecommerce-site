@@ -28,7 +28,7 @@ const Checkout = () => {
                     </ul>
                 </div>
                 <div className="tab-content" id="pills-tabContent">
-                    <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                    <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabIndex="0">
                         <div className="row row-gap-3">
                             <div className="col-lg-8">
                                 <div className="table-responsive">
@@ -38,7 +38,7 @@ const Checkout = () => {
                                                 <th scope="col">Product</th>
                                                 <th scope="col">Price</th>
                                                 <th scope="col">Quantity</th>
-                                                <th scope="col" colspan="2">Subtotal</th>
+                                                <th scope="col" colSpan="2">Subtotal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -163,15 +163,15 @@ const Checkout = () => {
                                                         <div className="col-8">
                                                             <div className="checkbox mb-1">
                                                                 <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                                                <label className="form-check-label subtotal" for="flexCheckDefault">Free shipping</label>
+                                                                <label className="form-check-label subtotal" htmlFor="flexCheckDefault">Free shipping</label>
                                                             </div>
                                                             <div className="checkbox mb-1">
                                                                 <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                                                                <label className="form-check-label subtotal" for="flexCheckDefault1">Flat rate: $49</label>
+                                                                <label className="form-check-label subtotal" htmlFor="flexCheckDefault1">Flat rate: $49</label>
                                                             </div>
                                                             <div className="checkbox mb-1">
                                                                 <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
-                                                                <label className="form-check-label subtotal" for="flexCheckDefault2">Local pickup: $8</label>
+                                                                <label className="form-check-label subtotal" htmlFor="flexCheckDefault2">Local pickup: $8</label>
                                                             </div>
                                                             <div className="subtotal">Shipping to ALL.</div>
                                                         </div>
@@ -199,7 +199,7 @@ const Checkout = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                    <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabIndex="0">
                         <div className="row row-gap-3">
                             <div className="col-lg-8">
                                 <div className="mb-3"><h5>BILLING DETAILS</h5></div>
@@ -207,43 +207,43 @@ const Checkout = () => {
                                     <div className="col-sm-6">
                                         <div className="form-floating">
                                             <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                            <label for="floatingInput">First Name</label>
+                                            <label htmlFor="floatingInput">First Name</label>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-floating">
                                             <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                            <label for="floatingInput2">Last Name</label>
+                                            <label htmlFor="floatingInput2">Last Name</label>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-floating">
                                             <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                            <label for="floatingInput2">Company Name (optional)</label>
+                                            <label htmlFor="floatingInput2">Company Name (optional)</label>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-floating">
                                             <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                            <label for="floatingInput2">Town / City</label>
+                                            <label htmlFor="floatingInput2">Town / City</label>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-floating">
                                             <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                            <label for="floatingInput2">Pincode / Zip</label>
+                                            <label htmlFor="floatingInput2">Pincode / Zip</label>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-floating">
                                             <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                            <label for="floatingInput2">Email Address</label>
+                                            <label htmlFor="floatingInput2">Email Address</label>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-floating">
                                             <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                            <label for="floatingInput2">Phone</label>
+                                            <label htmlFor="floatingInput2">Phone</label>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -265,11 +265,11 @@ const Checkout = () => {
                                     <div className="col-12">
                                         <div className="checkbox mb-2">
                                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefau" />
-                                            <label className="form-check-label" for="flexCheckDefau">CREATE AN ACCOUNT?</label>
+                                            <label className="form-check-label" htmlFor="flexCheckDefau">CREATE AN ACCOUNT?</label>
                                         </div>
                                         <div className="checkbox">
                                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefaul" />
-                                            <label className="form-check-label" for="flexCheckDefaul">SHIP TO A DIFFERENT ADDRESS?</label>
+                                            <label className="form-check-label" htmlFor="flexCheckDefaul">SHIP TO A DIFFERENT ADDRESS?</label>
                                         </div>
                                     </div>
                                     <div className="col-12">
@@ -345,7 +345,7 @@ const Checkout = () => {
                                                 <div className="col-12">
                                                     <div className="form-check checkbox">
                                                         <input className="form-check-input" type="radio" name="trems" id="bank" checked />
-                                                        <label className="form-check-label" for="bank">Direct bank transfer
+                                                        <label className="form-check-label" htmlFor="bank">Direct bank transfer
                                                             <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.Your order will not be shipped until the funds have cleared in our account.</p>
                                                         </label>
                                                     </div>
@@ -353,7 +353,7 @@ const Checkout = () => {
                                                 <div className="col-12">
                                                     <div className="form-check checkbox">
                                                         <input className="form-check-input" type="radio" name="trems" id="payment" />
-                                                        <label className="form-check-label" for="payment">Check payments
+                                                        <label className="form-check-label" htmlFor="payment">Check payments
                                                             <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
                                                         </label>
                                                     </div>
@@ -361,7 +361,7 @@ const Checkout = () => {
                                                 <div className="col-12">
                                                     <div className="form-check checkbox">
                                                         <input className="form-check-input" type="radio" name="trems" id="mode"  />
-                                                        <label className="form-check-label" for="mode">Cash on delivery
+                                                        <label className="form-check-label" htmlFor="mode">Cash on delivery
                                                             <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
                                                         </label>
                                                     </div>
@@ -369,7 +369,7 @@ const Checkout = () => {
                                                 <div className="col-12">
                                                     <div className="form-check checkbox">
                                                         <input className="form-check-input" type="radio" name="trems" id="paypal" />
-                                                        <label className="form-check-label" for="paypal">Paypal
+                                                        <label className="form-check-label" htmlFor="paypal">Paypal
                                                             <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
                                                         </label>
                                                     </div>
@@ -382,7 +382,7 @@ const Checkout = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                    <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabIndex="0">
                         <div className="row row-gap-3 order_placed_tab">
                             <div className="col-auto mx-auto">
                                 <div className="orderPlacedImg"><img src="/assets/images/icon/order_placed.svg" alt="order" /></div>

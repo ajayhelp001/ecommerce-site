@@ -33,7 +33,7 @@ const Signup = () => {
                                         <div className="tab-content" id="pills-tabContent">
                                             {
                                                 tabing.map ((item, i) =>
-                                                <div className={`${tab === i ? "active show" : ''} tab-pane fade`}>
+                                                <div key={i} className={`${tab === i ? "active show" : ''} tab-pane fade`}>
                                                     {item.tabData}
                                                 </div>
                                                 )
