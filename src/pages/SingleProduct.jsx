@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import BreadCrumb from '../GlobelComponent/BreadCrumb'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import ThemeButton from '../GlobelComponent/ThemeButton';
 import ProductSlider from '../Components/ProductSlider';
 import { useDispatch } from 'react-redux';
-import { add } from '../ProductStore/slice';
+import reducer, { add } from '../ProductStore/slice';
+import ReviewForm from '../Components/ReviewForm';
 
 
 
@@ -58,6 +59,50 @@ const SingleProduct = () => {
     const [tabActive, setTabActive] = useState(tabing[0])
 
 
+
+    const [reviews, setReviews] = useState([]);
+
+    const fetchReviews = () => {
+        let storedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+        if (!Array.isArray(storedReviews)) {
+            storedReviews = [];
+        }
+        if (!data?.id) return; 
+        const productReviews = storedReviews.filter(
+            (item) => item.productId === data.id
+        );
+        setReviews(productReviews);
+    };
+
+    useEffect(() => {
+        if (!data?.id) return;
+
+        fetchReviews();
+        window.addEventListener("reviewsUpdated", fetchReviews);
+        return () => {
+            window.removeEventListener("reviewsUpdated", fetchReviews);
+        };
+        }, [data?.id]);
+
+    // ⭐ Rating Calculation (Live + Local)
+    const localTotalReviews = reviews.length;
+    const localRatingSum = reviews.reduce((sum, item) => sum + Number(item.rating), 0);
+
+    const liveTotalReviews = data?.reviews?.length || 0;
+    const liveRatingSum = (data?.reviews || []).reduce(
+        (sum, item) => sum + Number(item.rating),
+        0
+    );
+
+    const totalAllReviews = localTotalReviews + liveTotalReviews;
+    const totalAllRatingSum = localRatingSum + liveRatingSum;
+
+    const finalRating = totalAllReviews > 0 ? totalAllRatingSum / totalAllReviews : 0;
+
+    const totalReviewCount = localTotalReviews + (data?.reviews?.length || 0);
+
+
     const productReview = [
         {rating : 5, color : 'success'},
         {rating : 4, color : 'primary'},
@@ -65,6 +110,13 @@ const SingleProduct = () => {
         {rating : 2, color : 'secondary'},
         {rating : 1, color : 'danger'}
     ]
+    
+
+    const navigate = useNavigate()
+
+    const handelCheckout = () => {
+        navigate(`/product/${name}/checkout`)
+    }
 
     const tabContent = {
         Description: (
@@ -95,6 +147,10 @@ const SingleProduct = () => {
                         </tbody>
                     </table>
                 </div>
+                {
+                    data?.description ?  <div className="col-lg-8 col-12"><p className="loremText">{data?.description}</p></div> :  ''
+                }
+                
             </div>
         ),
 
@@ -102,13 +158,13 @@ const SingleProduct = () => {
             <div className="row ratings row-gap-4">
                 <div className="col-md-4 col-sm-6">
                     <h6 className="mb-md-3 mb-2 fw-medium">Total Reviews's</h6>
-                    <h3 className="fw-semibold mb-md-3 mb-2">{data?.reviews?.length ? data?.reviews?.length : 0}</h3>
+                    <h3 className="fw-semibold mb-md-3 mb-2">{totalReviewCount ? totalReviewCount : 0}</h3>
                     <p className="text-muted mb-0 loremText">Growth in reviews on this year</p>
                 </div>
                 <div className="col-md-4 col-sm-6">
                     <h6 className="mb-md-3 mb-2 fw-medium">Average Rating</h6>
                     <div className="d-flex align-items-center gap-2 mb-md-3 mb-2">
-                        <h3 className="fw-semibold mb-0">{data?.rating ? data?.rating : 0}</h3>
+                        <h3 className="fw-semibold mb-0">{finalRating ? finalRating.toFixed(2) : data?.rating}</h3>
                         <ul className="product_rating list-unstyled">
                             <li><span><img src="/assets/images/icon/start.svg" alt="star"/></span></li>
                         </ul>
@@ -119,26 +175,30 @@ const SingleProduct = () => {
                     <div className="all_rating">
                         {
                             productReview.map((item, index) => {
-                                    const totalReview = data?.reviews?.length || 0;
-                                    const ratingCount = data?.reviews?.filter(r => Math.round(r.rating) === item.rating).length || 0;
-                                    const ratingPercentage = totalReview > 0 ? (ratingCount / totalReview) * 100 : 0;
+                                // const totalReview = data?.reviews?.length || 0;
+                                // const ratingCount = data?.reviews?.filter(r => Math.round(r.rating) === item.rating).length || 0;
+                                // const ratingPercentage = totalReview > 0 ? (ratingCount / totalReview) * 100 : 0;
+                                const allReviews = [...(data?.reviews || []), ...reviews];
+                                const totalReview = allReviews.length;
+                                const ratingCount = allReviews.filter(r => Math.round(r.rating) === item.rating).length;
+                                const ratingPercentage = totalReview > 0 ? (ratingCount / totalReview) * 100 : 0;
 
-                                    return  (
-                                    <div key={index} className={`row align-items-center g-3 align-items-center ${index === 4 ? '' : 'mb-2'}`}>
-                                        <div className="col-auto">
-                                            <h6 className="rating_stars text-muted"><span><img src="/assets/images/icon/start.svg" className="w-100" alt={`Rating - ${item.rating}`} /></span>{item.rating}</h6>
-                                        </div>
-                                        <div className="col">
-                                            <div className="progress animated-progress progress-sm">
-                                                <div className={`progress-bar bg-${item.color}`} role="progressbar" style={{width: `${ratingPercentage}%`}} aria-valuenow={ratingPercentage} aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div className="col-auto">
-                                            <h6 className="rating_stars text-muted">{ratingCount}</h6>
+                                return  (
+                                <div key={index} className={`row align-items-center g-3 align-items-center ${index === 4 ? '' : 'mb-2'}`}>
+                                    <div className="col-auto">
+                                        <h6 className="rating_stars text-muted"><span><img src="/assets/images/icon/start.svg" className="w-100" alt={`Rating - ${item.rating}`} /></span>{item.rating}</h6>
+                                    </div>
+                                    <div className="col">
+                                        <div className="progress animated-progress progress-sm">
+                                            <div className={`progress-bar bg-${item.color}`} role="progressbar" style={{width: `${ratingPercentage}%`}} aria-valuenow={ratingPercentage} aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                    )
-                                })
+                                    <div className="col-auto">
+                                        <h6 className="rating_stars text-muted">{ratingCount}</h6>
+                                    </div>
+                                </div>
+                                )
+                            })
                         }
                     </div>
                 </div>
@@ -146,31 +206,60 @@ const SingleProduct = () => {
         ),
 
         Reviews: (
-            <div className='row row-gap-3'>
-                {
-                    data?.reviews?.map((item, index) => {
-                        const reviewData = new Date(item.date).toLocaleString("en-GB", {
-                            day: "2-digit",
-                            month: "long",
-                            year: "numeric",
-                            hour: "numeric",
-                            minute: "2-digit",
-                            hour12: true,
+            <>
+                <div className='row row-gap-3'>
+                    {
+                        data?.reviews?.map((item, index) => {
+                            const reviewData = new Date(item.date).toLocaleString("en-GB", {
+                                day: "2-digit",
+                                month: "long",
+                                year: "numeric",
+                                hour: "numeric",
+                                minute: "2-digit",
+                                hour12: true,
+                            })
+                            return(
+                                <div className="col-12" key={index}>
+                                    <div className="review_Items">
+                                        <div className="userImg d-sm-block d-none"><img src={data?.thumbnail} alt="Review Img" /></div>
+                                        <div className="review_dic w-100">
+                                            <div className="row align-items-center row-gap-lg-3 row-gap-2">
+                                                <div className="col"><div className="review_user"><div className="userImg d-sm-none d-block"><img src={data?.thumbnail} alt="Review Img" /></div> {item.reviewerName} <span className="ms-2"> {reviewData}</span></div></div>
+                                                <div className="col-md-auto">
+                                                    <ul className="product_rating list-unstyled">
+                                                        <li>{item.rating}<span><img src="/assets/images/icon/start.svg" alt="star" /></span></li>
+                                                    </ul>
+                                                </div>
+                                                <div className="col-12">
+                                                    <p className="loremText m-0">{item.comment}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
                         })
-                        return(
+                    }
+                    {
+                        reviews.map((reviewitem, index) => 
                             <div className="col-12" key={index}>
                                 <div className="review_Items">
                                     <div className="userImg d-sm-block d-none"><img src={data?.thumbnail} alt="Review Img" /></div>
                                     <div className="review_dic w-100">
                                         <div className="row align-items-center row-gap-lg-3 row-gap-2">
-                                            <div className="col"><div className="review_user"><div className="userImg d-sm-none d-block"><img src={data?.thumbnail} alt="Review Img" /></div> {item.reviewerName} <span className="ms-2"> {reviewData}</span></div></div>
+                                            <div className="col">
+                                                <div className="review_user">
+                                                    <div className="userImg d-sm-none d-block"><img src={data?.thumbnail} alt="Review Img" /></div> 
+                                                    {reviewitem.name} <span className="ms-2"> {reviewitem.time}</span>
+                                                </div>
+                                            </div>
                                             <div className="col-md-auto">
                                                 <ul className="product_rating list-unstyled">
-                                                    <li>{item.rating}<span><img src="/assets/images/icon/start.svg" alt="star" /></span></li>
+                                                    <li>{reviewitem.rating}<span><img src="/assets/images/icon/start.svg" alt="star" /></span></li>
                                                 </ul>
                                             </div>
                                             <div className="col-12">
-                                                <p className="loremText m-0">{item.comment}</p>
+                                                <p className="loremText m-0">{reviewitem.message}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -178,9 +267,9 @@ const SingleProduct = () => {
                             </div>
                         )
                     }
-                    )
-                }
-            </div>
+                </div>
+                <ReviewForm productId={data?.id}/>
+            </>
         ),
         };
 
@@ -211,7 +300,7 @@ const SingleProduct = () => {
                                         <div className="col-auto"><span className={`stock ${data.stock ? '' : 'text-danger bg-danger bg-opacity-25'}`}>{data.stock > 0 ? `In stock` : 'Out Of Stock'}</span></div>
                                         <div className="col-auto">
                                             <ul className="product_rating list-unstyled">
-                                                <li>{data.rating} <span><img src="/assets/images/icon/start.svg" alt="star" /></span></li>
+                                                <li>{finalRating ? finalRating.toFixed(2) : data?.rating} <span><img src="/assets/images/icon/start.svg" alt="star" /></span></li>
                                             </ul>
                                         </div>
                                         <div className="col-auto"><div className="review"> ({data?.reviews?.length} Reviews)</div></div>
@@ -266,7 +355,10 @@ const SingleProduct = () => {
                                             <button className="btn themebtn w-100 " onClick={handleAddToCart}>Add To Cart <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
                                         </div>
                                         {/* <div className="col-sm-6"><ThemeButton type1="hello" btnType={'button'} btnClass='w-100' btnTitle={'Add To Cart'} /></div> */}
-                                        <div className="col-sm-6"><ThemeButton btnFill={true} btnClass='w-100' btnTitle={'By Now'} /></div>
+                                        <div className="col-sm-6">
+                                            <button className="btn themebtn fill w-100" onClick={handelCheckout}>By Now <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
+                                        </div>
+                                        {/* <div className="col-sm-6"><ThemeButton btnType={"button"} clickEvent={handelCheckout} btnFill={true} btnClass='w-100' btnTitle={'By Now'} /></div> */}
                                     </div>
                                 </div>
                             </div>

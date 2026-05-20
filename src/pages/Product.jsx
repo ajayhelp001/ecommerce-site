@@ -3,6 +3,7 @@ import BreadCrumb from '../GlobelComponent/BreadCrumb';
 import Select from 'react-select';
 import ProductCard from '../GlobelComponent/ProductCard';
 import { Link } from 'react-router';
+import ProductAdd from '../GlobelComponent/ProductAdd';
 
 const Product = () => {
   const sortOptions = [
@@ -69,6 +70,7 @@ const Product = () => {
   return (
     <>
         <BreadCrumb/>
+        <ProductAdd/>
         <section className="filter_section">
             <div className="container innerfluid">
             <div className="row d-lg-flex d-none align-items-center mb-4">

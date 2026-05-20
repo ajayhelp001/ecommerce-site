@@ -31,8 +31,8 @@ const Header = () => {
     const navbarNav = [
         {NavLinkItem : '/', NavTitle : 'Home'},
         {NavLinkItem : '/product', NavTitle : 'Products'},
-        {NavLinkItem : '/', NavTitle : 'Blog'},
-        {NavLinkItem : '/', NavTitle : 'Contact Us'},
+        {NavLinkItem : '/blog', NavTitle : 'Blog'},
+        {NavLinkItem : '/contact-us', NavTitle : 'Contact Us'},
     ]
 
     const [cartModal, setCartModal] = useState(false)
@@ -64,7 +64,7 @@ const Header = () => {
       }
       const [productCount, eventFunction] = useReducer(reduserFunction, initionlValue)
 
-    //   Product Total Price 
+    
     const totalPrice = cartProducts.reduce((sum, val) => {
     const price = parseFloat(val.productPrice) || 0;
     const qty = productCount[val.productId] || 1;
@@ -94,6 +94,14 @@ const Header = () => {
 
     const openSearch = () => setSearch(true);
     const closeSearch = () => setSearch(false);
+
+
+
+    const navigateCheckout = useNavigate()
+    
+    const handelCheckout = () => {
+        navigateCheckout(`/product/:name/checkout`)
+    }
 
   return (
     <>
@@ -194,7 +202,7 @@ const Header = () => {
                                                     <div className="row gx-2">
                                                         <div className="col-auto"><div className="productimg"><img src={item.productImg1} className="w-100" alt="oil" /></div></div>
                                                         <div className="col">
-                                                            <Link to={`/product/${item.productTitle.toLowerCase().replace(/\s+/g, "-")}`} className="productName text-decoration-none">{item.productTitle}</Link>
+                                                            <Link to={`/product/${item.productTitle.toLowerCase().replace(/\s+/g, "-")}`} onClick={() => setCartModal(false)} className="productName text-decoration-none">{item.productTitle}</Link>
                                                             <div className="productPrice"><span>${item.productPrice}</span> ${item.productPrice}</div>
                                                             <div className="number">
                                                                 <span className="minus" onClick={() => eventFunction({ type: "decrement", id: item.productId })}>-</span>
@@ -233,7 +241,7 @@ const Header = () => {
                                             <div className="col-auto totalprich">${totalPrice.toFixed(2)}</div>
                                         </div>
                                     </div>
-                                    <div className="col-12"><ThemeButton clickEvent={() => setCartModal(false)} btnClass={'w-100'} btnTitle='View shopping cart' /></div>
+                                    <div className="col-12"><ThemeButton btnType={"button"} clickEvent={handelCheckout} btnClass={'w-100'} btnTitle='View shopping cart' /></div>
                                 </>
                             ) : ''
                         } 
