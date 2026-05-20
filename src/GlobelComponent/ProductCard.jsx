@@ -58,7 +58,7 @@ const ProductCard = (
                                 };
                                 addProduct(productData);
                             }}                              
-                            btnFillName={true} btnTitle={productavailability} btnLink={productLink ? productLink : ''}/> 
+                            btnFillName={true} btnTitle={productavailability}/> 
 
                         </div>
                 </div>

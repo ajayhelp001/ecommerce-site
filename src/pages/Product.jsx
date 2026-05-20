@@ -37,7 +37,6 @@ const Product = () => {
 
   // Apply filters and sorting
   useEffect(() => {
-    console.log('allProducts' + allProducts);
     
     let updated = [...allProducts];
 
@@ -146,20 +145,6 @@ const Product = () => {
                                     </div>
                                 </div>
                             </div>
-                            {/* <div className="col-12">
-                                <div className="card filtercard">
-                                    <div className="card-body">
-                                        <div className="row row-gap-2">
-                                            <div className="col-12">
-                                                <button type="button" className="btn w-100 themebtn fill">Apply Now <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
-                                            </div>
-                                            <div className="col-12">
-                                                <button type="button" className="btn w-100 themebtn ">Reset Filter <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -175,27 +160,27 @@ const Product = () => {
                     </div>  
                     {/* Product Listing */}
                     <div className="col-lg-12">
-                    <div className="row g-sm-3 g-2">
-                        {filteredProducts.map((item, index) => (
-                        <div key={index} className="col-lg-4 col-6">
-                            <ProductCard
-                                productId={item.id}
-                                productImg1={item.images?.[0] || item.thumbnail}
-                                productImg2={item.thumbnail}
-                                productOffer={item.discountPercentage}
-                                productTag={item.tags?.[0] || ''}
-                                productWishlistLink=""
-                                productLink={`/product/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
-                                productTitle={item.title}
-                                productCategory={item.category}
-                                productPrice={item.price}
-                                productOfferPrice={item.price}
-                                productRating={item.rating}
-                                productTotalRating={item.reviews?.length || 0}
-                            />
+                        <div className="row g-sm-3 g-2">
+                            {filteredProducts.map((item, index) => (
+                            <div key={index} className="col-lg-4 col-6">
+                                <ProductCard
+                                    productId={item.id}
+                                    productImg1={item.images?.[0] || item.thumbnail}
+                                    productImg2={item.thumbnail}
+                                    productOffer={item.discountPercentage}
+                                    productTag={item.tags?.[0] || ''}
+                                    productWishlistLink=""
+                                    productLink={`/product/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                                    productTitle={item.title}
+                                    productCategory={item.category}
+                                    productPrice={item.price}
+                                    productOfferPrice={item.price}
+                                    productRating={item.rating}
+                                    productTotalRating={item.reviews?.length || 0}
+                                />
+                            </div>
+                            ))}
                         </div>
-                        ))}
-                    </div>
                     </div>
                     <div className="row">
                         <div className="col-12 mt-5">

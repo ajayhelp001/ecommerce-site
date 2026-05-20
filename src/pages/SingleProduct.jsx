@@ -3,10 +3,35 @@ import BreadCrumb from '../GlobelComponent/BreadCrumb'
 import { Link, useParams } from 'react-router-dom';
 import ThemeButton from '../GlobelComponent/ThemeButton';
 import ProductSlider from '../Components/ProductSlider';
+import { useDispatch } from 'react-redux';
+import { add } from '../ProductStore/slice';
 
 
 
 const SingleProduct = () => {
+
+        const dispatch = useDispatch();
+
+        const handleAddToCart = () => {
+            const productData = {
+                productId: data.id,
+                productImg1: data.thumbnail,
+                productImg2: data.images?.[0],
+                productOffer: data.discountPercentage,
+                productTag: "New",
+                productWishlistLink: "/wishlist",
+                productLink: `/product/${data.id}`,
+                productTitle: data.title,
+                productCategory: data.category,
+                productPrice: data.price,
+                productOfferPrice: data.price - (data.price * data.discountPercentage) / 100,
+                productRating: data.rating,
+                productTotalRating: 5,
+                productavailability: "Add To Cart",
+                quantity: productQuntity, 
+                };
+            dispatch(add(productData));
+        };
 
     const { name } = useParams();
     const [data, setData] = useState(null);
@@ -30,6 +55,137 @@ const SingleProduct = () => {
     const [productQuntity, setProductQuntity] = useState(1)
 
     const tabing = ['Description', 'Ratings', 'Reviews' ]
+    const [tabActive, setTabActive] = useState(tabing[0])
+
+
+    const productReview = [
+        {rating : 5, color : 'success'},
+        {rating : 4, color : 'primary'},
+        {rating : 3, color : 'info'},
+        {rating : 2, color : 'secondary'},
+        {rating : 1, color : 'danger'}
+    ]
+
+    const tabContent = {
+        Description: (
+            <div className="row row-gap-lg-4 row-gap-3">
+                <div className="col-12">
+                    <table className="table table-sm discription_tabel table-borderless align-middle">
+                        <tbody>
+                            {data?.title ? <tr><th className='text-capitalize'>Title</th><td>{data?.title}</td></tr> : ''}
+                            {data?.category ? <tr><th className='text-capitalize'>category</th><td className='text-capitalize'>{data?.category}</td></tr> : ''}
+                            {data?.price ? <tr><th className='text-capitalize'>price</th><td>{data?.price}</td></tr> : ''}
+                            {data?.discountPercentage ? <tr><th className='text-capitalize'>discountPercentage</th><td>{data?.discountPercentage}</td></tr> : ''}
+                            {data?.rating ? <tr><th className='text-capitalize'>rating</th><td>{data?.rating}</td></tr> : ''}
+                            {data?.stock ? <tr><th className='text-capitalize'>stock</th><td>{data?.stock}</td></tr> : ''}
+                            {data?.brand ? <tr><th className='text-capitalize'>brand</th><td>{data?.brand}</td></tr> : ''}
+                            {data?.sku ? <tr><th className='text-capitalize'>sku</th><td>{data?.sku}</td></tr> : ''}
+                            {data?.weight ? <tr><th className='text-capitalize'>weight</th><td>{data?.weight}</td></tr> : ''}
+                            {data?.dimensions ? <tr><th className='text-capitalize'>dimensions</th><td>{`W - ${data?.dimensions?.width}, H - ${data?.dimensions?.height}, D - ${data?.dimensions?.depth}`}</td></tr> : ''}
+                            {data?.warrantyInformation ? <tr><th className='text-capitalize'>warrantyInformation</th><td>{data?.warrantyInformation}</td></tr> : ''}
+                            {data?.shippingInformation ? <tr><th className='text-capitalize'>shippingInformation</th><td>{data?.shippingInformation}</td></tr> : ''}
+                            {data?.availabilityStatus ? <tr><th className='text-capitalize'>availabilityStatus</th><td>{data?.availabilityStatus}</td></tr> : ''}
+                            {data?.reviews ? <tr><th className='text-capitalize'>reviews</th><td>{data?.reviews?.length}</td></tr> : ''}
+                            {data?.returnPolicy ? <tr><th className='text-capitalize'>returnPolicy</th><td>{data?.returnPolicy}</td></tr> : ''}
+                            {data?.minimumOrderQuantity ? <tr><th className='text-capitalize'>minimumOrderQuantity</th><td>{data?.minimumOrderQuantity}</td></tr> : ''}
+                            {data?.meta?.createdAt ? <tr><th className='text-capitalize'>createdAt</th><td>{data?.meta?.createdAt}</td></tr> : ''}
+                            {data?.meta?.updatedAt ? <tr><th className='text-capitalize'>updatedAt</th><td>{data?.meta?.updatedAt}</td></tr> : ''}
+                            {data?.meta?.barcode ? <tr><th className='text-capitalize'>barcode</th><td>{data?.meta?.barcode}</td></tr> : ''}
+                            {data?.meta?.qrCode ? <tr><th className='text-capitalize'>qrCode</th><td><img src={data?.meta?.qrCode} width={100} alt="{data?.meta?.qrCode}" /></td></tr> : ''}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        ),
+
+        Ratings: (
+            <div className="row ratings row-gap-4">
+                <div className="col-md-4 col-sm-6">
+                    <h6 className="mb-md-3 mb-2 fw-medium">Total Reviews's</h6>
+                    <h3 className="fw-semibold mb-md-3 mb-2">{data?.reviews?.length ? data?.reviews?.length : 0}</h3>
+                    <p className="text-muted mb-0 loremText">Growth in reviews on this year</p>
+                </div>
+                <div className="col-md-4 col-sm-6">
+                    <h6 className="mb-md-3 mb-2 fw-medium">Average Rating</h6>
+                    <div className="d-flex align-items-center gap-2 mb-md-3 mb-2">
+                        <h3 className="fw-semibold mb-0">{data?.rating ? data?.rating : 0}</h3>
+                        <ul className="product_rating list-unstyled">
+                            <li><span><img src="/assets/images/icon/start.svg" alt="star"/></span></li>
+                        </ul>
+                    </div>
+                    <p className="text-muted mb-0 loremText">Average rating on this year</p>
+                </div>
+                <div className="col-md-4">
+                    <div className="all_rating">
+                        {
+                            productReview.map((item, index) => {
+                                    const totalReview = data?.reviews?.length || 0;
+                                    const ratingCount = data?.reviews?.filter(r => Math.round(r.rating) === item.rating).length || 0;
+                                    const ratingPercentage = totalReview > 0 ? (ratingCount / totalReview) * 100 : 0;
+
+                                    return  (
+                                    <div key={index} className={`row align-items-center g-3 align-items-center ${index === 4 ? '' : 'mb-2'}`}>
+                                        <div className="col-auto">
+                                            <h6 className="rating_stars text-muted"><span><img src="/assets/images/icon/start.svg" className="w-100" alt={`Rating - ${item.rating}`} /></span>{item.rating}</h6>
+                                        </div>
+                                        <div className="col">
+                                            <div className="progress animated-progress progress-sm">
+                                                <div className={`progress-bar bg-${item.color}`} role="progressbar" style={{width: `${ratingPercentage}%`}} aria-valuenow={ratingPercentage} aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div className="col-auto">
+                                            <h6 className="rating_stars text-muted">{ratingCount}</h6>
+                                        </div>
+                                    </div>
+                                    )
+                                })
+                        }
+                    </div>
+                </div>
+            </div>
+        ),
+
+        Reviews: (
+            <div className='row row-gap-3'>
+                {
+                    data?.reviews?.map((item, index) => {
+                        const reviewData = new Date(item.date).toLocaleString("en-GB", {
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                            hour12: true,
+                        })
+                        return(
+                            <div className="col-12" key={index}>
+                                <div className="review_Items">
+                                    <div className="userImg d-sm-block d-none"><img src={data?.thumbnail} alt="Review Img" /></div>
+                                    <div className="review_dic w-100">
+                                        <div className="row align-items-center row-gap-lg-3 row-gap-2">
+                                            <div className="col"><div className="review_user"><div className="userImg d-sm-none d-block"><img src={data?.thumbnail} alt="Review Img" /></div> {item.reviewerName} <span className="ms-2"> {reviewData}</span></div></div>
+                                            <div className="col-md-auto">
+                                                <ul className="product_rating list-unstyled">
+                                                    <li>{item.rating}<span><img src="/assets/images/icon/start.svg" alt="star" /></span></li>
+                                                </ul>
+                                            </div>
+                                            <div className="col-12">
+                                                <p className="loremText m-0">{item.comment}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
+                    )
+                }
+            </div>
+        ),
+        };
+
+
+        
   return (
     <>
       <BreadCrumb/>
@@ -106,7 +262,10 @@ const SingleProduct = () => {
                                 </div>
                                 <div className="col-12">
                                     <div className="row row-gap-2 align-items-center">
-                                        <div className="col-sm-6"><ThemeButton btnType={'button'} btnClass='w-100' btnTitle={'Add To Cart'} /></div>
+                                        <div className="col-sm-6">
+                                            <button className="btn themebtn w-100 " onClick={handleAddToCart}>Add To Cart <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
+                                        </div>
+                                        {/* <div className="col-sm-6"><ThemeButton type1="hello" btnType={'button'} btnClass='w-100' btnTitle={'Add To Cart'} /></div> */}
                                         <div className="col-sm-6"><ThemeButton btnFill={true} btnClass='w-100' btnTitle={'By Now'} /></div>
                                     </div>
                                 </div>
@@ -123,18 +282,20 @@ const SingleProduct = () => {
                                 {
                                     tabing.map((item, index) => 
                                         <li key={index} className="nav-item" role="presentation">
-                                            <button className={`nav-link ${index === 0 ? "active" : ""}`} id={`pills-${item}-tab`} data-bs-toggle="pill" data-bs-target={`#pills-${item}`} type="button" role="tab" aria-controls={`pills-${item}`} aria-selected={index ? true : false}>{item}</button>
+                                            <button className={`nav-link ${tabActive === item ? "active" : ""}`} onClick={() => setTabActive(item)} id={`pills-${item}-tab`} data-bs-toggle="pill" data-bs-target={`#pills-${item}`} type="button" role="tab" aria-controls={`pills-${item}`} aria-selected={tabActive === item ? true : false}>{item}</button>
                                         </li>
                                     )
                                 }
                             </ul>
                         </div>
                         <div className="col-12">
-                            <div className="tab-content" id="pills-tabContent">
-                                <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-
+                            <div className="tab-content">
+                                {tabing.map((item, index) => (
+                                    <div key={index} className={`tab-pane fade ${tabActive === item ? "show active" : ""}`} id={`pills-${item}`} role="tabpanel" aria-labelledby={`pills-${item}-tab`} tabIndex="0"> 
+                                        {tabContent[item]}
+                                    </div>
+                                ))}
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>

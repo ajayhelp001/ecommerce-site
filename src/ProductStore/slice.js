@@ -14,9 +14,15 @@ export const slice = createSlice({
             state.item.push(action.payload);
             localStorage.setItem('cart', JSON.stringify(state.item));
         },
+        // removeCart(state, action) {
+        //     state.item = state.item.filter((item) => item.productId !== action.payload)
+        //     localStorage.setItem('cart', JSON.stringify(state.item))
+        // }
         removeCart(state, action) {
-            state.item = state.item.filter((item) => item.productId !== action.payload)
-            localStorage.setItem('cart', JSON.stringify(state.item))
+            state.item = state.item.filter(
+                (item) => String(item.productId) !== String(action.payload)
+            );
+            localStorage.setItem("cart", JSON.stringify(state.item));
         }
     }
 })

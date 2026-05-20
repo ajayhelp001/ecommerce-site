@@ -19,7 +19,6 @@ const Searchpopup = ({closePopup}) => {
             fetch(`https://dummyjson.com/products/search?q=${search}`).then((res) => {
                 res.json().then((result) => {
                     setResult(result.products)
-                    console.log(result);
                     
                 })
             })
@@ -73,8 +72,7 @@ const Searchpopup = ({closePopup}) => {
                 </form>
             </div>
             <div class="modal-footer">
-                <ThemeButton btnType={'button'} btnTitle='Close' onClick={closePopup}  data-bs-dismiss="modal"/>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={closePopup}>Close</button>
+                <button type="button" class="  btn themebtn" data-bs-dismiss="modal" onClick={closePopup}>Close <span><img alt="arrow" src="/assets/images/icon/right_arrow.svg" /></span></button>
             </div>
             </div>
         </div>
