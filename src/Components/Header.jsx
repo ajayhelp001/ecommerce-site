@@ -44,7 +44,7 @@ const Header = () => {
 
     // Add Product Count
     const initionlValue = {}
-      const reduserFunction = (state, action) =>{
+    const reduserFunction = (state, action) =>{
         const { type, id } = action;
         switch (type) {
             case 'incriment':
@@ -61,8 +61,8 @@ const Header = () => {
             default:
                 return state;
         }
-      }
-      const [productCount, eventFunction] = useReducer(reduserFunction, initionlValue)
+    }
+    const [productCount, eventFunction] = useReducer(reduserFunction, initionlValue)
 
     
     const totalPrice = cartProducts.reduce((sum, val) => {
@@ -100,7 +100,8 @@ const Header = () => {
     const navigateCheckout = useNavigate()
     
     const handelCheckout = () => {
-        navigateCheckout(`/product/:name/checkout`)
+        navigateCheckout(`/checkout`)
+        setCartModal(false)
     }
 
   return (

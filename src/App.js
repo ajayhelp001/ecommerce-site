@@ -25,6 +25,7 @@ function App() {
           <Route path='/blog/:name' element={<Singleblog />} />
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/product/:name/checkout' element={<Checkout />} />
+          <Route path='/checkout' element={<Checkout />} />
         </Route>
 
         <Route path='/signup' element={<Signup />} />

@@ -1,3 +1,33 @@
 .cartPopup .itemcard .card-body .productName:hover{color: var(--theme1);}
 a {transition: all ease-in-out 0.3s;}
 .cursor-pointer {cursor: pointer;}
+
+.offer-marquee{
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(90deg,#ff6a00,#ee0979);
+    padding: 10px;
+    position: relative;
+}
+
+.offer-track{
+    white-space: nowrap;
+    text-align: center;
+    /* animation: marqueeMove 30s linear infinite; */
+}
+
+.offer-track span{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: .5px;
+    /* padding-left: 100%; */
+}
+/* @keyframes marqueeMove{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+} */

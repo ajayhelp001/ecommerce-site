@@ -9,7 +9,7 @@ const OfferSection = () => {
                 <div className="row row-gap-lg-5 row-gap-sm-4 row-gap-3 mx-0">
                     <div className="col-12 productName">One-colored <br/>jackets up to</div>
                     <div className="col-12 discount">-20%</div>
-                    <div className="col-12"><ThemeButton btnFill={true}/></div>
+                    <div className="col-12"><ThemeButton btnLink={'/product'} btnFill={true}/></div>
                 </div>
             </div>
         </section>

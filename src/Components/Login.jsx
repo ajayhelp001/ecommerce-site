@@ -52,7 +52,7 @@ export const Login = ({forgotPassComponent}) => {
             fetch("https://04a7-122-162-240-56.ngrok-free.app/api/auth/login", requestOptions).then((response) => {
                 response.json().then((result) => {
                     
-                    console.log(result.message);
+                    // console.log(result.message);
 
                     if (!inputValue.email) {
                             setEmailError(result.message[0])
@@ -66,7 +66,7 @@ export const Login = ({forgotPassComponent}) => {
                         
                         localStorage.setItem("token" , result.access_token)
 
-                        console.log(result);
+                        // console.log(result);
                         
                         navigate('/')
                         setLoding(true)

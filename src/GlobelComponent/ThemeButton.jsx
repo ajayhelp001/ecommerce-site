@@ -6,7 +6,7 @@ const ThemeButton = ({btnLink, btnType, btnTitle = "Shop Now", btnFill, btnClass
     <>
     {
       btnType ? 
-      <button type={btnType} className={`${btnClass ? btnClass : ''} ${btnFill ? 'fill' : ''} btn themebtn`}>{btnTitle}<span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
+      <button type={btnType} onClick={clickEvent} className={`${btnClass ? btnClass : ''} ${btnFill ? 'fill' : ''} btn themebtn`}>{btnTitle}<span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
       :
       <Link onClick={clickEvent} to={btnLink} className={`${btnClass ? btnClass : ''} ${btnFill ? 'fill' : ''} btn themebtn`} >{btnTitle} <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></Link>
     }

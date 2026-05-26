@@ -117,6 +117,10 @@ const SingleProduct = () => {
     const handelCheckout = () => {
         navigate(`/product/${name}/checkout`)
     }
+    const handalCartAndCheckout = () => {
+        handelCheckout();
+        handleAddToCart();
+    }
 
     const tabContent = {
         Description: (
@@ -352,13 +356,11 @@ const SingleProduct = () => {
                                 <div className="col-12">
                                     <div className="row row-gap-2 align-items-center">
                                         <div className="col-sm-6">
-                                            <button className="btn themebtn w-100 " onClick={handleAddToCart}>Add To Cart <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
+                                            <ThemeButton btnType={'button'} clickEvent={handleAddToCart} btnClass='w-100' btnTitle='Add To Cart'/>
                                         </div>
-                                        {/* <div className="col-sm-6"><ThemeButton type1="hello" btnType={'button'} btnClass='w-100' btnTitle={'Add To Cart'} /></div> */}
                                         <div className="col-sm-6">
-                                            <button className="btn themebtn fill w-100" onClick={handelCheckout}>By Now <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button>
+                                            <ThemeButton btnType={'button'} clickEvent={handalCartAndCheckout} btnFill={true} btnClass='w-100' btnTitle='By Now'/>
                                         </div>
-                                        {/* <div className="col-sm-6"><ThemeButton btnType={"button"} clickEvent={handelCheckout} btnFill={true} btnClass='w-100' btnTitle={'By Now'} /></div> */}
                                     </div>
                                 </div>
                             </div>

@@ -48,7 +48,7 @@ const IndexPage = () => {
                           <div className="col-12"><div className="mainheading">Find <span>Best</span> Matley Sound</div></div>
                           <div className="col-12 loremtext">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus ex id enim veniam quas soluta.</div>
                           {/* <div className="col-12"><a href="javascript:;" className="btn themebtn">Shop Now <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></a></div> */}
-                          <div className="col-12"><ThemeButton btnLink={'/'}/></div>
+                          <div className="col-12"><ThemeButton btnLink={'/product'}/></div>
                       </div>
                   </div>
               </div>
@@ -91,7 +91,6 @@ const IndexPage = () => {
             ProductDiscount={'The wait is on: iphone 12 max pro'} 
             ProductDetail={'Last call for up to'}
             ProductDiscountPersent = {'32'}
-            ProductLink = {'/'}
             productBtnName={'Shop Now'}
         />
         <section className="blogsection mt-0">

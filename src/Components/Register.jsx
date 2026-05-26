@@ -49,7 +49,7 @@ const Register = () => {
             fetch("https://04a7-122-162-240-56.ngrok-free.app/api/auth/register", requestOptions).then((response) => {
                 response.json().then((result) => {
                     setSuccess(result.message)
-                    console.log(result.message);
+                    // console.log(result.message);
                     
                     if (!inputValue.name) {
                         setNameError(result.message[2])
@@ -70,7 +70,7 @@ const Register = () => {
                 })
             })
 
-            .catch((error) => console.error(error));
+            // .catch((error) => console.error(error));
 
             setLoding(false)
     }

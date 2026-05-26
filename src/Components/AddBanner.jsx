@@ -3,7 +3,7 @@ import ThemeButton from '../GlobelComponent/ThemeButton'
 
 
 
-const AddBanner = ({productBgImg, productName, ProductDiscount, ProductDiscountPersent, ProductDetail, ProductLink, productBtnName}) => {
+const AddBanner = ({productBgImg, productName, ProductDiscount, ProductDiscountPersent, ProductDetail, ProductLink = "/product", productBtnName}) => {
     const bannerImgStyle = {
         backgroundImage :  `url(${productBgImg})`
     }

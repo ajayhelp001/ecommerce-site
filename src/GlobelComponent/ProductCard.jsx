@@ -11,9 +11,9 @@ const ProductCard = (
 ) => {
     const dispatch = useDispatch()
     const addProduct = (item) => {
-       dispatch(add(item));
+        dispatch(add(item));
     }
-
+    
 
   return (
     <>
@@ -58,7 +58,8 @@ const ProductCard = (
                                 };
                                 addProduct(productData);
                             }}                              
-                            btnFillName={true} btnTitle={productavailability}/> 
+                            btnFillName={true} btnTitle={productavailability}
+                            /> 
 
                         </div>
                 </div>
