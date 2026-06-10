@@ -4,9 +4,9 @@ import { Link } from 'react-router'
 const Footer = () => {
     const mainLink = [
         { LinkTitle : 'About Us', linkUrl : ''},
-        { LinkTitle : 'Products', linkUrl : ''},
-        { LinkTitle : 'Blog', linkUrl : ''},
-        { LinkTitle : 'contact Us', linkUrl : ''}
+        { LinkTitle : 'Products', linkUrl : '/product'},
+        { LinkTitle : 'Blog', linkUrl : '/blog'},
+        { LinkTitle : 'contact Us', linkUrl : '/contact-us'}
     ]
     const usefullLink = [
         { LinkTitle : 'New Products', linkUrl : ''},

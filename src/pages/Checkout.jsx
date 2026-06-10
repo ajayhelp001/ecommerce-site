@@ -3,7 +3,8 @@ import BreadCrumb from '../GlobelComponent/BreadCrumb';
 import { Link } from 'react-router';
 import ThemeButton from '../GlobelComponent/ThemeButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeCart, setCartTotal } from '../ProductStore/slice';
+import { removeCart, setCartTotal, updateQuantity, setCartSummary } from '../ProductStore/slice';
+import Select from 'react-select';
 
 const Checkout = () => {
 
@@ -35,12 +36,15 @@ const Checkout = () => {
     const dispatch = useDispatch()
     const cartItems = useSelector(state => state.cart.item  )
 
-    const allProductPrice = cartItems.reduce((sum, val) => {
-        const price = parseFloat(val.productOfferPrice)
-        const qty = productCountValue[val.productId] || 1;
-        return sum + price * qty
-    }, 0)
+    // const allProductPrice = cartItems.reduce((sum, val) => {
+    //     const price = parseFloat(val.productOfferPrice)
+    //     const qty = productCountValue[val.productId] || 1;
+    //     return sum + price * qty
+    // }, 0)
 
+    const allProductPrice = cartItems.reduce((sum, item) => {
+        return sum + item.itemTotalPrice;
+    }, 0);
     
     const [activeStep, setActiveStep] = useState(1);
 
@@ -81,9 +85,15 @@ const Checkout = () => {
         
     }, [sameDayDelivery, localPickup, allProductPrice, offerMessage]);
 
+    // console.log(setCartTotal);
+    
+
     // const alltotalPrice = useSelector(
-    //     state => state.cart.alltotalPrice
+    //     state => state.setCartTotal.alltotalPrice
+    //     dispatch(removeCart(item.productId))
     // );
+
+
 
 
     useEffect(() => {
@@ -99,6 +109,7 @@ const Checkout = () => {
     }, []);
 
 
+    
     const sameDayDeliveryHandlar = (e) => {
         const checked = e.target.checked;
         setSameDayDelivery(checked);
@@ -111,6 +122,7 @@ const Checkout = () => {
                     year: 'numeric'
                 })
             );
+            
         } else {
             setSameDayDeliveryDate('');
         }
@@ -127,25 +139,46 @@ const Checkout = () => {
     }
 
     // console.log(offer);
+    // const cartSummary = useSelector(
+    //     state => state.cart.cartSummary
+    // );
+
+
+
+    const [applyOffer, setApplyOffer] = useState()
+
+    useEffect(() => {
+        setApplyOffer(JSON.parse(localStorage.getItem('cartSummary')))
+    },[])
 
     const offersubmit = async (e) => {
         e.preventDefault()
-        // let offerVoucher = offerName
 
         if (offer === offerName && Number(allProductPrice) > 50) {
             setofferMessage('🎉 Offer applied successfully! Your discount has been added to the total amount.');
             setofferError(false);
             setOfferAmount(offerPriceAmount)
-            console.log(totalPrice);
+            
+            const cartData = {
+                subtotal: allProductPrice, 
+                shipping: (sameDayDelivery ? sameDayDeliveryCharge : 0) + (localPickup ? localPickupCharge : 0),
+                discount: offerPriceAmount,
+                total: totalPrice - offerPriceAmount,
+                coupon: offer
+            }
+
+            dispatch(setCartSummary(cartData))
+            setApplyOffer(cartData)
             
         } 
-        else if (Number(allProductPrice) <= 50) {
-            setofferError('A minimum purchase of $50 is required to place your order.') 
+        else if (Number(allProductPrice) <= 50 && offer !== offerName) {
+            // ⚠️ Ye condition pehle check karo (specific pehle, general baad mein)
+            setofferError('Invalid offer code, And A minimum purchase of $50 is required to place your order.') 
             setofferMessage(false); 
             setOfferAmount(0)
         }
-        else if (Number(allProductPrice) <= 50 && offer !==  offerName) {
-            setofferError('Invalid offer code, And A minimum purchase of $50 is required to place your order.') 
+        else if (Number(allProductPrice) <= 50) {
+            setofferError('A minimum purchase of $50 is required to place your order.') 
             setofferMessage(false); 
             setOfferAmount(0)
         }
@@ -160,19 +193,59 @@ const Checkout = () => {
         }
     }
 
-    useEffect(() => {
-
-    }, [])
-    
-
-    // console.log('input value - ', offerName);
-    // console.log('Offer value - ', offer);
-
     const removeOfferHandler = () => {
         setofferMessage(false)
         setoffer('')
+        setOfferAmount(0)  
+        setApplyOffer(null)     
+        localStorage.removeItem('cartSummary')
+
+        dispatch(setCartSummary({
+            subtotal: allProductPrice,
+            shipping: (sameDayDelivery ? sameDayDeliveryCharge : 0) + (localPickup ? localPickupCharge : 0),
+            discount: 0,
+            total: allProductPrice,
+            coupon: ''
+        }))
     }
+
+
+
+
+    // Step 2 Shipping Form
     
+        const options = [
+            { value: 'Choose a location...', label: 'Choose a location...' },
+            { value: 'RJ', label: 'Rajasthan' },
+            { value: 'MH', label: 'Maharashtra' },
+            { value: 'GJ', label: 'Gujarat' },
+            { value: 'DL', label: 'Delhi' },
+            { value: 'HR', label: 'Haryana' },
+        ]
+
+
+    const [billingName, setBillingName] = useState()
+    const [billingEmail, setBillingEmail] = useState()
+    const [billingCity, setBillingCity] = useState()
+    const [billingZipCode, setBillingZipCode] = useState()
+    const [billingPhone, setBillingPhone] = useState()
+    const [billingLocation, setBillingLocation] = useState()
+    const [billingAddress, setBillingAddress] = useState()
+    const [billingMessage, setBillingMessage] = useState()
+
+    const [errorBillingName, setErrorBillingName] = useState()
+    const [errorBillingEmail, setErrorBillingEmail] = useState()
+    const [errorBillingCity, setErrorBillingCity] = useState()
+    const [errorBillingZipCode, setErrorBillingZipCode] = useState()
+    const [errorBillingPhone, setErrorBillingPhone] = useState()
+    const [errorBillingLocation, setErrorBillingLocation] = useState()
+    const [errorBillingAddress, setErrorBillingAddress] = useState()
+    const [errorBillingMessage, setErrorBillingMessage] = useState()
+
+    const bilingForm = async (e) => {
+        e.preventDefault();
+    }
+
 
     const steps = [
         {
@@ -214,12 +287,12 @@ const Checkout = () => {
                                                     <td>${(item.productOfferPrice).toFixed(2)}</td>
                                                     <td>
                                                         <div className="number m-0">
-                                                            <span className="minus" onClick={() => productEvent({type : "decrement" , id : item.productId})}>-</span>
-                                                            <input type="text" className="form-control rounded-0 border-0 shadow-none" value={productCountValue[item.productId] || 1} />
-                                                            <span className="plus" onClick={() => productEvent({type : "incriment" , id : item.productId})}>+</span>
+                                                            <span className="minus" onClick={() => dispatch(updateQuantity({productId: item.productId, quantity: item.quantity <= 1 ? 1 : item.quantity - 1}))}>-</span>
+                                                            <input type="text" className="form-control rounded-0 border-0 shadow-none" value={item.quantity ? item.quantity : 1} readOnly />
+                                                            <span className="plus" onClick={() => dispatch(updateQuantity({productId: item.productId, quantity: item.quantity >= 5 ? 5 : item.quantity + 1}))}>+</span>
                                                         </div>
                                                     </td>
-                                                    <td>{(item.productOfferPrice) * productCountValue[item.productId] || item.productOfferPrice}</td>
+                                                    <td>${item.itemTotalPrice}</td>
                                                     <td>
                                                         <ul className="list-unstyled d-flex gap-3 mb-0">
                                                             <li><button onClick={() => dispatch(removeCart(item.productId))} className="actionBtn close shadow-none border-0"><img src="/assets/images/icon/red_close.svg" alt="" /></button></li>
@@ -305,16 +378,17 @@ const Checkout = () => {
                                         </div>
                                         <div className="col-12"><hr className="m-0" /></div>
                                         {
-                                            offerMessage ?
-                                            <>
-                                            <div className="col-12">
-                                                <div className="row align-items-center">
-                                                    <div className="col-4 subtotal">Offer Price</div>
-                                                    <div className="col-8 subtotal">-${offerAmount} <span onClick={removeOfferHandler} className='shadow-none ms-2 text-danger cursor-pointer'>Remove</span></div>
+                                            applyOffer?.discount ? (
+                                                <>
+                                                <div className="col-12">
+                                                    <div className="row align-items-center">
+                                                        <div className="col-4 subtotal">Offer Price</div>
+                                                        <div className="col-8 subtotal">-${applyOffer?.discount} <span onClick={removeOfferHandler} className='shadow-none ms-2 text-danger cursor-pointer'>Remove</span></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="col-12"><hr className="m-0" /></div>
-                                            </> : ''
+                                                <div className="col-12"><hr className="m-0" /></div>
+                                                </> 
+                                            ) : ''
                                         }
                                         <div className="col-12">
                                             <div className="row align-items-center">
@@ -325,7 +399,9 @@ const Checkout = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="proccedBtn mt-3"><Link to={""} className="btn themebtn w-100 fill">Proceed to Checkout <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></Link></div>
+                            <div className="proccedBtn mt-3">
+                                <ThemeButton btnType={'button'} clickEvent={() => setActiveStep(2)} btnTitle='Proceed to Checkout' btnClass={'w-100'} btnFill={true}/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -342,77 +418,47 @@ const Checkout = () => {
                 <div className="row row-gap-3">
                     <div className="col-lg-8">
                         <div className="mb-3"><h5>BILLING DETAILS</h5></div>
-                        <form className="row row-gap-sm-4 row-gap-3">
+                        <form onSubmit={bilingForm} className="row row-gap-sm-4 row-gap-3">
                             <div className="col-sm-6">
                                 <div className="form-floating">
-                                    <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                    <label htmlFor="floatingInput">First Name</label>
+                                    <input type="text" className={`${errorBillingName ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingName(e.target.value)} value={billingName} placeholder="name@example.com" />
+                                    <label>Full Name</label>
                                 </div>
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-floating">
-                                    <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                    <label htmlFor="floatingInput2">Last Name</label>
+                                    <input type="email" className={`${errorBillingEmail ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingEmail(e.target.value)} value={billingEmail} placeholder="name@example.com" />
+                                    <label>Email Address</label>
                                 </div>
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-floating">
-                                    <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                    <label htmlFor="floatingInput2">Company Name (optional)</label>
+                                    <input type="text" className={`${errorBillingCity ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingCity(e.target.value)} value={billingCity} placeholder="name@example.com" />
+                                    <label>Town / City</label>
                                 </div>
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-floating">
-                                    <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                    <label htmlFor="floatingInput2">Town / City</label>
+                                    <input type="tel" className={`${errorBillingZipCode ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingZipCode(e.target.value)} value={billingZipCode} placeholder="name@example.com" />
+                                    <label>Pincode / Zip</label>
                                 </div>
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-floating">
-                                    <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                    <label htmlFor="floatingInput2">Pincode / Zip</label>
-                                </div>
-                            </div>
-                            <div className="col-sm-6">
-                                <div className="form-floating">
-                                    <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                    <label htmlFor="floatingInput2">Email Address</label>
-                                </div>
-                            </div>
-                            <div className="col-sm-6">
-                                <div className="form-floating">
-                                    <input type="text" className="form-control" id="floatingInput2" placeholder="name@example.com" />
-                                    <label htmlFor="floatingInput2">Phone</label>
+                                    <input type="tel" className={`${errorBillingPhone ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingPhone(e.target.value)} value={billingPhone} placeholder="name@example.com" />
+                                    <label>Phone</label>
                                 </div>
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-floating bg_none_select2">
-                                    <select className="js-example-basic-single w-100" name="state">
-                                        <option value="Choose a location..." selected>Choose a location...</option>
-                                        <option value="In">India</option>
-                                        <option value="AU">Australia</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="UK">United Kingdom</option>
-                                        <option value="US">United States</option>
-                                        <option value="TU">Turkey</option>
-                                    </select>
+                                    <Select options={options} onChange={(e) => setBillingLocation(e.target.value)} value={billingLocation}   />
                                 </div>
                             </div>
                             <div className="col-12">
-                                <textarea name="" id="floatingInput3" placeholder="Street Address" className="form-control textarea w-100" cols="30" rows="2"></textarea>
+                                <textarea id="floatingInput3" placeholder="Street Address" className={`${errorBillingAddress ? 'border-danger' : ''} form-control textarea w-100`} onChange={(e) => setBillingAddress(e.target.value)} value={billingAddress} cols="30" rows="2"></textarea>
                             </div>
                             <div className="col-12">
-                                <div className="checkbox mb-2">
-                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefau" />
-                                    <label className="form-check-label" htmlFor="flexCheckDefau">CREATE AN ACCOUNT?</label>
-                                </div>
-                                <div className="checkbox">
-                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefaul" />
-                                    <label className="form-check-label" htmlFor="flexCheckDefaul">SHIP TO A DIFFERENT ADDRESS?</label>
-                                </div>
-                            </div>
-                            <div className="col-12">
-                                <textarea name="" id="floatingInput3" placeholder="Order Notes (optional)" className="form-control textarea w-100" cols="30" rows="8"></textarea>
+                                <textarea id="floatingInput3" placeholder="Order Notes (optional)" className={`${errorBillingMessage ? 'border-danger' : ''} form-control textarea w-100`} onChange={(e) => setBillingMessage(e.target.value)} value={billingMessage} cols="30" rows="8"></textarea>
                             </div>
                             <div className="col-12 text-end"><button type="submit" className="btn themebtn fill">Submit Now <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button></div>
                         </form>
@@ -432,25 +478,25 @@ const Checkout = () => {
                                         <div className="col-12"><hr className="m-0" /></div>
                                         <div className="col-12">
                                             <div className="row row-gap-2 ">
-                                                <div className="col-12">
-                                                    <div className="row">
-                                                        <div className="col subtotal subcategory">Velvet Red Charm</div>
-                                                        <div className="col-auto"><div className="subtotal subcategory">$32.50</div></div>
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="row">
-                                                        <div className="col subtotal subcategory">Hydrating Waves</div>
-                                                        <div className="col-auto"><div className="subtotal subcategory">$69.50</div></div>
-                                                    </div>
-                                                </div>
+                                                {
+                                                    cartItems && cartItems.length > 0 ? (
+                                                        cartItems.map((item, index) => 
+                                                        <div key={item.id} className="col-12">
+                                                            <div className="row">
+                                                                <div className="col subtotal subcategory">{item.productTitle} <strong className='text-dark'>({item.quantity})</strong></div>
+                                                                <div className="col-auto"><div className="subtotal subcategory">${item.itemTotalPrice}</div></div>
+                                                            </div>
+                                                        </div>
+                                                        )
+                                                    ) : ''
+                                                }
                                             </div>
                                         </div>
                                         <div className="col-12"><hr className="m-0" /></div>
                                         <div className="col-12">
                                             <div className="row">
                                                 <div className="col subtotal">SUBTOTAL</div>
-                                                <div className="col-auto subtotal">$120.40</div>
+                                                <div className="col-auto subtotal">${allProductPrice.toFixed(2)}</div>
                                             </div>
                                         </div>
                                         <div className="col-12"><hr className="m-0" /></div>
@@ -462,16 +508,34 @@ const Checkout = () => {
                                         </div>
                                         <div className="col-12"><hr className="m-0" /></div>
                                         <div className="col-12">
-                                            <div className="row">
-                                                <div className="col subtotal">VAT</div>
-                                                <div className="col-auto subtotal">$100</div>
+                                            <div className="row align-items-center">
+                                                <div className="col subtotal">Delivery date</div>
+                                                <div className="col-auto subtotal">
+                                                    {
+                                                        sameDayDelivery ? sameDayDeliveryDate : deliveryDate
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="col-12"><hr className="m-0" /></div>
+
+                                        {
+                                            applyOffer?.discount ? (
+                                                <>
+                                                <div className="col-12">
+                                                    <div className="row align-items-center">
+                                                        <div className="col subtotal">Offer Price</div>
+                                                        <div className="col-auto subtotal">-${applyOffer?.discount}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12"><hr className="m-0" /></div>
+                                                </> 
+                                            ) : ''
+                                        }
                                         <div className="col-12">
                                             <div className="row">
                                                 <div className="col subtotal">TOTAL</div>
-                                                <div className="col-auto subtotal">$1400</div>
+                                                <div className="col-auto subtotal">${totalPrice.toFixed(2)}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -483,7 +547,7 @@ const Checkout = () => {
                                     <form action="" className="row row-gap-3 t_c_form">
                                         <div className="col-12">
                                             <div className="form-check checkbox">
-                                                <input className="form-check-input" type="radio" name="trems" id="bank" checked />
+                                                <input className="form-check-input" type="radio" name="trems" id="bank"/>
                                                 <label className="form-check-label" htmlFor="bank">Direct bank transfer
                                                     <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.Your order will not be shipped until the funds have cleared in our account.</p>
                                                 </label>
@@ -627,8 +691,6 @@ const Checkout = () => {
             )
         },
     ];
-
-
   return (
     <>
     <BreadCrumb/>
@@ -651,17 +713,18 @@ const Checkout = () => {
                                 }
                             </div>
                             <div className="col-12 stepnavbar">
-                                <ul className="nav nav-pills mb-lg-5 mb-4 steps row step_bar" id="pills-tab" role="tablist">
+                                <ul className="nav nav-pills steps row step_bar" id="pills-tab" role="tablist">
                                     {
                                         steps.map((item, index) => 
                                             <li key={item.id} className={`col-md-4 col-12 nav-item ${item.id === 1 ? 'pe-md-0' : item.id === 2 ? 'px-md-0' : item.id === 3 ? 'ps-md-0' : ''} `} role="presentation">
+                                                {/* <button className={`nav-link w-100 ${activeStep === item.id ? 'active' : activeStep > item.id ? 'is_active' : ''}`} onClick={() => setActiveStep(item.id)} id={`pills-${item.id}-tab`} data-bs-toggle="pill" data-bs-target={`#pills-${item.id}`} type="button" role="tab" aria-controls={`pills-${item.id}`} aria-selected={activeStep === item.id ? true : false}>{item.number} <div className="step">{item.title}<span>{item.subtitle}</span></div></button> */}
                                                 <button className={`nav-link w-100 ${activeStep === item.id ? 'active' : activeStep > item.id ? 'is_active' : ''}`} onClick={() => setActiveStep(item.id)} id={`pills-${item.id}-tab`} data-bs-toggle="pill" data-bs-target={`#pills-${item.id}`} type="button" role="tab" aria-controls={`pills-${item.id}`} aria-selected={activeStep === item.id ? true : false}>{item.number} <div className="step">{item.title}<span>{item.subtitle}</span></div></button>
                                             </li>
                                         )
                                     }
                                 </ul>
                             </div>
-                            <div className="tab-content" id="pills-tabContent">
+                            <div className="tab-content mt-lg-5 mt-4" id="pills-tabContent">
                                 {
                                     steps.map((stepContent, index) => 
                                         <div key={stepContent.id} className="tab-pane fade show active" id={`pills-${stepContent.id}`} role="tabpanel" aria-labelledby={`pills-${stepContent.id}-tab`} tabIndex="0">

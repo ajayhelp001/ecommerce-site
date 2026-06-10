@@ -38,7 +38,7 @@ const ProductCard = (
                         </ul>
                     </div>
                     <div className="overlay">
-                            <ThemeButton type='button' 
+                            <ThemeButton type='button' btnFill={true}
                             clickEvent={() => {
                                 const productData = {
                                     productId,
