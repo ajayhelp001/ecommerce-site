@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>About Us | Campus Seva — India's Trusted Education Discovery Platform</title>
+<meta name="description" content="Campus Seva helps Indian students find the right coaching, college, school & hostel. Founded by Ajay Saini, we make education discovery simple, honest & free for every student in India."/>
+<meta name="keywords" content="about campus seva, campus seva founder, campus seva team, education platform India, college discovery India"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://campusseva.com/about-campus-seva/"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&display=swap" rel="stylesheet"/>
+
+<style>
+:root{
+  --theme1:#df2600;--theme2:#3d3d3d;--theme3:#F5F5F5;
+  --white:#ffffff;--black:#000;
+  --gray-200:#e9ecef;--gray-300:#dee2e6;--gray-400:#ced4da;
+  --gray-500:#adb5bd;--gray-600:#6c757d;--gray-700:#495057;
+  --fs-12:12px;--fs-13:13px;--fs-14:14px;--fs-16:16px;--fs-18:18px;--fs-20:20px;
+  --fw-400:400;--fw-500:500;--fw-600:600;--fw-700:700;--fw-800:800;
+  --theme1-light:rgba(223,38,0,0.07);--theme1-mid:rgba(223,38,0,0.14);
+  --shadow-sm:0 2px 8px rgba(0,0,0,0.07);
+  --shadow-md:0 10px 30px rgba(20,15,10,0.10);
+  --shadow-lg:0 24px 60px rgba(20,15,10,0.16);
+  --radius:18px;--radius-sm:10px;
+
+  /* signature palette: warm ink + parchment + ember accent */
+  --ink:#161311;
+  --ink-soft:#2a2522;
+  --parchment:#F7F3EC;
+  --parchment-deep:#EFE7D8;
+  --rule:#E2D9C8;
+  --serif:'Fraunces',serif;
+  --sans:'Inter',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink-soft);background:var(--parchment);font-size:16px;line-height:1.65;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.08;color:var(--ink);font-weight:600}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+.container-narrow{max-width:860px;margin:0 auto;padding:0 24px}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+}
+
+/* ══ BREADCRUMB ══ */
+.breadcrumb-bar{background:var(--ink);padding:13px 0}
+.breadcrumb-bar nav{font-size:13px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:7px;font-family:var(--sans)}
+.breadcrumb-bar nav a{color:rgba(255,255,255,.85);transition:color .2s}
+.breadcrumb-bar nav a:hover{color:var(--theme1)}
+.breadcrumb-bar nav span.sep{color:rgba(255,255,255,.25)}
+
+/* ══════════════ HERO ══════════════
+   Signature: a typeset "case file" header — index number,
+   running headline, and a single oversized stat pulled
+   right into the headline rhythm. No stock gradient hero. */
+.hero{
+  background:var(--ink);
+  color:var(--parchment);
+  padding:88px 0 0;
+  position:relative;
+  overflow:hidden;
+}
+.hero-top{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:40px;
+  align-items:start;
+  padding-bottom:64px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  position:relative;
+}
+.hero-index{
+  font-family:var(--serif);
+  font-size:15vw;
+  line-height:.78;
+  font-weight:600;
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(255,255,255,.14);
+  letter-spacing:-2px;
+  user-select:none;
+  align-self:start;
+  display:none;
+}
+.hero-kicker{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--theme1);font-weight:600;margin-bottom:26px;
+  font-family:var(--sans);
+}
+.hero-kicker::before{content:'';width:28px;height:1px;background:var(--theme1)}
+.hero h1{
+  font-size:clamp(38px,6vw,76px);
+  font-weight:600;
+  color:var(--white);
+  max-width:920px;
+  letter-spacing:-1px;
+}
+.hero h1 em{
+  font-style:italic;
+  font-weight:500;
+  color:var(--theme1);
+}
+.hero-lede{
+  font-size:clamp(16px,1.5vw,19px);
+  color:rgba(247,243,236,.62);
+  max-width:560px;
+  margin-top:28px;
+  font-family:var(--sans);
+  line-height:1.75;
+}
+
+/* Hero credential strip — replaces generic "stats card" with
+   a typeset ledger row, like a masthead colophon */
+.ledger{
+  display:flex;
+  flex-wrap:wrap;
+}
+.ledger-item{
+  flex:1;
+  min-width:150px;
+  padding:30px 28px;
+  border-right:1px solid rgba(255,255,255,.1);
+  font-family:var(--sans);
+}
+.ledger-item:last-child{border-right:none}
+.ledger-num{
+  font-family:var(--serif);
+  font-size:34px;
+  font-weight:600;
+  color:var(--theme1);
+  display:block;
+  line-height:1;
+  margin-bottom:6px;
+}
+.ledger-lbl{
+  font-size:12.5px;
+  color:rgba(247,243,236,.5);
+  letter-spacing:.3px;
+}
+
+/* ══════════════ SECTION SCAFFOLD ══════════════ */
+.section{padding:96px 0}
+.section-tight{padding:72px 0}
+.section-cream{background:var(--parchment)}
+.section-deep{background:var(--parchment-deep)}
+.section-ink{background:var(--ink);color:var(--parchment)}
+
+.head{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:48px;
+  margin-bottom:56px;
+}
+.head-kicker{
+  font-size:13px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--theme1);font-weight:600;font-family:var(--sans);
+  padding-top:6px;
+}
+.head h2{font-size:clamp(28px,3.4vw,42px);max-width:640px}
+.head p.lede{font-size:17px;color:var(--gray-600);max-width:600px;margin-top:14px;font-family:var(--sans);line-height:1.7}
+.section-ink .head p.lede{color:rgba(247,243,236,.6)}
+
+/* ══════════════ STORY (asymmetric, no stock photo block) ══════════════ */
+.story{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start}
+.story-lead{font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);color:var(--ink);font-weight:500;line-height:1.4;margin-bottom:28px}
+.story-lead em{color:var(--theme1);font-style:italic}
+.story p{font-size:16px;color:var(--gray-700);margin-bottom:18px;line-height:1.8;font-family:var(--sans)}
+.story-pull{
+  border-left:3px solid var(--theme1);
+  padding:6px 0 6px 24px;
+  margin:32px 0;
+}
+.story-pull p{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--ink);line-height:1.5;margin:0}
+
+.story-side{
+  background:var(--ink);
+  border-radius:var(--radius);
+  padding:40px 36px;
+  position:sticky;
+  top:24px;
+}
+.story-side-label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--theme1);font-weight:600;margin-bottom:20px;font-family:var(--sans)}
+.story-fact{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.story-fact:last-child{border-bottom:none;padding-bottom:0}
+.story-fact .f-num{font-family:var(--serif);font-size:30px;color:var(--white);display:block;line-height:1}
+.story-fact .f-lbl{font-size:13px;color:rgba(247,243,236,.5);margin-top:5px;font-family:var(--sans)}
+
+/* ══════════════ PRINCIPLES (numbered manifesto, not card-grid) ══════════════
+   Justified: this content IS an ordered set of operating commitments —
+   numbering encodes "this is how we operate, in order of how we say it." */
+.manifesto{max-width:880px}
+.principle{
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:32px;
+  padding:36px 0;
+  border-top:1px solid var(--rule);
+}
+.principle:last-child{border-bottom:1px solid var(--rule)}
+.principle-num{font-family:var(--serif);font-size:42px;color:var(--theme1);font-weight:500;line-height:1}
+.principle h3{font-size:21px;margin-bottom:8px}
+.principle p{font-size:15.5px;color:var(--gray-600);line-height:1.75;font-family:var(--sans);max-width:560px}
+
+/* ══════════════ SERVICES (rail, not 4-up icon cards) ══════════════ */
+.service-rail{display:flex;flex-direction:column}
+.service-row{
+  display:grid;
+  grid-template-columns:64px 220px 1fr 140px;
+  gap:24px;
+  align-items:center;
+  padding:26px 0;
+  border-top:1px solid var(--rule);
+  transition:padding-left .25s;
+}
+.service-row:last-child{border-bottom:1px solid var(--rule)}
+.service-row:hover{padding-left:8px}
+.service-mark{font-family:var(--serif);font-size:15px;color:var(--gray-400);font-weight:500}
+.service-row h4{font-size:19px}
+.service-row p{font-size:14.5px;color:var(--gray-600);font-family:var(--sans);line-height:1.6}
+.service-tag{
+  font-size:12px;font-weight:600;color:var(--theme1);
+  text-align:right;font-family:var(--sans);letter-spacing:.3px;
+}
+
+/* ══════════════ JOURNEY (typeset timeline, real chronology) ══════════════ */
+.journey{position:relative}
+.journey-track{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:0;
+  position:relative;
+}
+.journey-track::before{
+  content:'';position:absolute;top:11px;left:0;right:0;height:1px;
+  background:var(--rule);
+}
+.j-item{position:relative;padding-top:36px}
+.j-dot{
+  position:absolute;top:0;left:0;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--parchment);border:2px solid var(--theme1);
+}
+.j-year{font-family:var(--serif);font-size:15px;color:var(--theme1);font-weight:600;margin-bottom:10px}
+.j-item h4{font-size:16.5px;margin-bottom:8px}
+.j-item p{font-size:13.5px;color:var(--gray-600);line-height:1.65;font-family:var(--sans)}
+
+/* ══════════════ FOUNDER (editorial split, no avatar circle gimmick) ══════════════ */
+.founder{
+  background:var(--ink);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+}
+.founder-mark{
+  background:
+    radial-gradient(circle at 25% 20%, rgba(223,38,0,.5), transparent 55%),
+    var(--ink-soft);
+  padding:56px 48px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:380px;
+}
+.founder-mono{
+  font-family:var(--serif);
+  font-size:128px;
+  color:rgba(247,243,236,.92);
+  font-weight:600;
+  line-height:.85;
+}
+.founder-role-tag{
+  font-size:13px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--theme1);font-weight:600;font-family:var(--sans);
+}
+.founder-copy{padding:56px 56px 56px 0;display:flex;flex-direction:column;justify-content:center}
+.founder-copy .f-name{font-family:var(--serif);font-size:28px;color:var(--white);margin-bottom:4px}
+.founder-copy .f-title{font-size:14px;color:rgba(247,243,236,.5);margin-bottom:24px;font-family:var(--sans)}
+.founder-copy blockquote{
+  font-family:var(--serif);font-style:italic;font-size:21px;
+  color:var(--parchment);line-height:1.55;margin-bottom:18px;
+}
+.founder-copy blockquote:last-of-type{margin-bottom:0}
+
+/* ══════════════ TEAM (name-led roster, not photo-grid cards) ══════════════ */
+.roster{border-top:1px solid var(--rule)}
+.roster-row{
+  display:grid;
+  grid-template-columns:1fr 1fr 2fr;
+  gap:24px;
+  padding:28px 0;
+  border-bottom:1px solid var(--rule);
+  align-items:baseline;
+}
+.roster-name{font-family:var(--serif);font-size:21px;color:var(--ink)}
+.roster-role{font-size:13.5px;color:var(--theme1);font-weight:600;font-family:var(--sans);letter-spacing:.2px}
+.roster-desc{font-size:14.5px;color:var(--gray-600);font-family:var(--sans);line-height:1.6}
+
+/* ══════════════ TESTIMONIALS (quote-led, ink section) ══════════════ */
+.quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.1);border-radius:var(--radius-sm);overflow:hidden}
+.quote-card{background:var(--ink);padding:34px 30px}
+.quote-mark{font-family:var(--serif);font-size:48px;color:var(--theme1);line-height:.6;margin-bottom:14px;display:block}
+.quote-text{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--parchment);line-height:1.55;margin-bottom:22px}
+.quote-by{font-size:13.5px;color:rgba(247,243,236,.85);font-weight:600;font-family:var(--sans)}
+.quote-ctx{font-size:12px;color:rgba(247,243,236,.45);font-family:var(--sans);margin-top:2px}
+
+/* ══════════════ CTA (the signature close — typeset call, not a button-in-a-box) ══════════════ */
+.cta{
+  background:var(--theme1);
+  position:relative;
+  overflow:hidden;
+  padding:88px 0;
+}
+.cta::before{
+  content:'';
+  position:absolute;
+  right:-6%;top:50%;transform:translateY(-50%);
+  font-family:var(--serif);font-weight:600;font-size:380px;line-height:1;
+  color:rgba(255,255,255,.06);
+  pointer-events:none;
+  white-space:nowrap;
+}
+.cta-inner{position:relative;z-index:1;max-width:680px}
+.cta-kicker{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.75);font-weight:600;margin-bottom:18px;font-family:var(--sans)}
+.cta h2{font-size:clamp(30px,4.2vw,52px);color:var(--white);max-width:600px;margin-bottom:22px}
+.cta p{font-size:17px;color:rgba(255,255,255,.85);max-width:480px;margin-bottom:36px;font-family:var(--sans);line-height:1.7}
+.cta-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn-ink{
+  background:var(--ink);color:var(--white);
+  padding:16px 32px;border-radius:var(--radius-sm);
+  font-family:var(--sans);font-weight:600;font-size:15px;
+  border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-ink:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.btn-line{
+  color:var(--white);font-family:var(--sans);font-weight:600;font-size:15px;
+  display:inline-flex;align-items:center;gap:8px;
+  border-bottom:1.5px solid rgba(255,255,255,.5);
+  padding-bottom:2px;transition:border-color .2s;
+}
+.btn-line:hover{border-color:var(--white)}
+
+/* ══════════════ REVEAL ══════════════ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* focus visibility */
+a:focus-visible,button:focus-visible{outline:2px solid var(--theme1);outline-offset:3px}
+
+/* ══════════════ RESPONSIVE ══════════════ */
+@media(max-width:980px){
+  .head{grid-template-columns:1fr}
+  .head-kicker{padding-top:0}
+  .story{grid-template-columns:1fr}
+  .story-side{position:static}
+  .founder{grid-template-columns:1fr}
+  .founder-mono{font-size:90px}
+  .founder-copy{padding:40px}
+  .journey-track{grid-template-columns:1fr 1fr;gap:32px 24px}
+  .journey-track::before{display:none}
+  .quote-grid{grid-template-columns:1fr}
+  .service-row{grid-template-columns:40px 1fr;grid-template-areas:"mark title" ". desc" ". tag"}
+  .service-mark{grid-area:mark}
+  .service-row h4{grid-area:title}
+  .service-row p{grid-area:desc}
+  .service-tag{grid-area:tag;text-align:left;margin-top:4px}
+  .roster-row{grid-template-columns:1fr;gap:6px}
+}
+@media(max-width:640px){
+  .section{padding:64px 0}
+  .hero{padding:56px 0 0}
+  .hero-top{padding-bottom:40px}
+  .ledger-item{min-width:46%;padding:22px 18px}
+  .principle{grid-template-columns:1fr;gap:10px}
+  .cta-actions{flex-direction:column;align-items:flex-start}
+  .cta::before{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <nav>
+      <a href="https://campusseva.com">Home</a>
+      <span class="sep">/</span>
+      <span>About Us</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ══════════════ HERO ══════════════ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div></div>
+      <div>
+        <div class="hero-kicker">About Campus Seva</div>
+        <h1>Education decisions deserve <em>better information</em> than rumor.</h1>
+        <p class="hero-lede">Campus Seva is India's education discovery platform — built so students choose a coaching institute, college, hostel, or university abroad on facts, not agent commissions. Free to use, always.</p>
+      </div>
+    </div>
+    <div class="ledger reveal">
+      <div class="ledger-item"><span class="ledger-num">58+</span><span class="ledger-lbl">Colleges listed</span></div>
+      <div class="ledger-item"><span class="ledger-num">25+</span><span class="ledger-lbl">Coaching institutes</span></div>
+      <div class="ledger-item"><span class="ledger-num">8</span><span class="ledger-lbl">Study abroad countries</span></div>
+      <div class="ledger-item"><span class="ledger-num">2,000+</span><span class="ledger-lbl">Students guided</span></div>
+      <div class="ledger-item"><span class="ledger-num">₹0</span><span class="ledger-lbl">Cost to students</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════ STORY ══════════════ -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="head">
+      <div class="head-kicker">Why we exist</div>
+      <div>
+        <h2>The choice that shapes a career was being made on hearsay.</h2>
+      </div>
+    </div>
+    <div class="story reveal">
+      <div>
+        <p class="story-lead">Every year, lakhs of students in Kota and across India pick a coaching institute or college <em>without ever seeing honest information about it.</em></p>
+        <p>Fee structures hidden until enrolment day. Faculty claims nobody can verify. Hostel listings that don't match what's behind the gate. And running through almost every step, an agent whose advice depends on which institute pays the better commission.</p>
+        <div class="story-pull">
+          <p>"We didn't want to be another listings site. We wanted to be the place a student trusts more than the tenth person they ask."</p>
+        </div>
+        <p>So we built Campus Seva as the opposite of that system: verified institute information, real comparisons, and direct admission support — at zero cost to the student, because the student was never the one who should be paying.</p>
+      </div>
+      <aside class="story-side">
+        <div class="story-side-label">Where we started</div>
+        <div class="story-fact"><span class="f-num">Kota</span><span class="f-lbl">India's coaching capital — where the problem was clearest</span></div>
+        <div class="story-fact"><span class="f-num">2024</span><span class="f-lbl">First verified institute listings went live</span></div>
+        <div class="story-fact"><span class="f-num">8 states</span><span class="f-lbl">And growing, college by college</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PRINCIPLES (manifesto) ══════════════ -->
+<section class="section section-deep">
+  <div class="container">
+    <div class="head">
+      <div class="head-kicker">How we operate</div>
+      <div>
+        <h2>Three commitments we don't compromise on.</h2>
+        <p class="lede">In the order we'd defend them, if asked.</p>
+      </div>
+    </div>
+    <div class="manifesto reveal">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <div>
+          <h3>The student never pays</h3>
+          <p>Campus Seva is free for every student, on every plan, with no premium tier hiding better information behind a paywall. We're paid by partner institutes for successful, transparent referrals — never by ranking placement.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <div>
+          <h3>No listing is for sale</h3>
+          <p>An institute's position on Campus Seva reflects verified facts — results, fees, faculty, infrastructure — not how much they've paid us. If we can't verify a claim, we don't publish it.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <div>
+          <h3>Every answer is specific</h3>
+          <p>We don't give generic advice. A counsellor looks at your marks, budget, and goals before recommending anything — the same way a good mentor would, not a search algorithm.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ WHAT WE DO (rail) ══════════════ -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="head">
+      <div class="head-kicker">What we cover</div>
+      <div>
+        <h2>One platform, every stage of the decision.</h2>
+      </div>
+    </div>
+    <div class="service-rail reveal">
+      <div class="service-row">
+        <span class="service-mark">①</span>
+        <h4>Coaching & Academy</h4>
+        <p>JEE, NEET and competitive-exam institutes with verified result history and faculty records.</p>
+        <span class="service-tag">25+ institutes</span>
+      </div>
+      <div class="service-row">
+        <span class="service-mark">②</span>
+        <h4>Colleges & Universities</h4>
+        <p>Engineering, medical and university listings with direct admission support, not just contact forms.</p>
+        <span class="service-tag">58+ colleges</span>
+      </div>
+      <div class="service-row">
+        <span class="service-mark">③</span>
+        <h4>Hostels & PG</h4>
+        <p>Verified student accommodation near campuses — checked against what's actually behind the gate.</p>
+        <span class="service-tag">7+ hostels</span>
+      </div>
+      <div class="service-row">
+        <span class="service-mark">④</span>
+        <h4>Study Abroad</h4>
+        <p>500+ partner universities across 8 countries, with scholarship guidance and full visa support.</p>
+        <span class="service-tag">8 countries</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ JOURNEY ══════════════ -->
+<section class="section section-deep">
+  <div class="container">
+    <div class="head">
+      <div class="head-kicker">Our journey</div>
+      <div>
+        <h2>From one city's problem to a national platform.</h2>
+      </div>
+    </div>
+    <div class="journey reveal">
+      <div class="journey-track">
+        <div class="j-item">
+          <div class="j-dot"></div>
+          <div class="j-year">Year One</div>
+          <h4>Started in Kota</h4>
+          <p>Verified coaching institute listings for JEE & NEET aspirants, built from direct campus visits.</p>
+        </div>
+        <div class="j-item">
+          <div class="j-dot"></div>
+          <div class="j-year">Year One</div>
+          <h4>Added colleges</h4>
+          <p>Engineering & medical college listings expanded across Rajasthan and neighbouring states.</p>
+        </div>
+        <div class="j-item">
+          <div class="j-dot"></div>
+          <div class="j-year">Expansion</div>
+          <h4>Hostels & schools</h4>
+          <p>Verified student accommodation and school listings added as more cities came online.</p>
+        </div>
+        <div class="j-item">
+          <div class="j-dot"></div>
+          <div class="j-year">Going global</div>
+          <h4>Study Abroad launched</h4>
+          <p>Partnerships with 500+ universities across 8 countries, with scholarships up to 50%.</p>
+        </div>
+        <div class="j-item">
+          <div class="j-dot"></div>
+          <div class="j-year">Today</div>
+          <h4>2,000+ guided</h4>
+          <p>Same promise as day one — verified information, zero cost, every single time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOUNDER ══════════════ -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="head">
+      <div class="head-kicker">Leadership</div>
+      <div>
+        <h2>A note from the founder.</h2>
+      </div>
+    </div>
+    <div class="founder reveal">
+      <div class="founder-mark">
+        <span class="founder-mono">AS</span>
+        <span class="founder-role-tag">Founder &amp; CEO</span>
+      </div>
+      <div class="founder-copy">
+        <div class="f-name">Ajay Saini</div>
+        <div class="f-title">Founder & Chief Executive Officer, Campus Seva</div>
+        <blockquote>"I built Campus Seva after watching too many sharp students make the wrong call — not from a lack of ability, but a lack of honest information at the moment it mattered."</blockquote>
+        <blockquote>"Every feature, every listing, comes back to one question: does this actually help a student decide better? If the answer is no, we don't ship it. Free, honest, student-first — that part doesn't change as we grow."</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TEAM (roster) ══════════════ -->
+<section class="section section-deep">
+  <div class="container">
+    <div class="head">
+      <div class="head-kicker">The team</div>
+      <div>
+        <h2>A small team, working close to the problem.</h2>
+        <p class="lede">No call centre. People who actually answer the phone.</p>
+      </div>
+    </div>
+    <div class="roster reveal">
+      <div class="roster-row">
+        <div class="roster-name">Ajay Saini</div>
+        <div class="roster-role">Founder & CEO</div>
+        <div class="roster-desc">Sets the direction and reviews every major institute partnership personally.</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name">Riya Mehta</div>
+        <div class="roster-role">Head of Admissions Counselling</div>
+        <div class="roster-desc">Six years guiding students through coaching, college and university admissions across India.</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name">Karan Verma</div>
+        <div class="roster-role">Study Abroad Specialist</div>
+        <div class="roster-desc">Handles university shortlisting, scholarship applications and visa documentation for outbound students.</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name">Sneha Patil</div>
+        <div class="roster-role">Partnerships & Outreach Lead</div>
+        <div class="roster-desc">Verifies and onboards every coaching institute, college and university listed on the platform.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
+<section class="section section-ink">
+  <div class="container">
+    <div class="head">
+      <div class="head-kicker">In their words</div>
+      <div>
+        <h2>What students say, unedited.</h2>
+      </div>
+    </div>
+    <div class="quote-grid reveal">
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">I was lost between five coaching institutes in Kota. Campus Seva gave me a real comparison — no agent calling me twenty times a day.</p>
+        <div class="quote-by">Aman Kumar</div>
+        <div class="quote-ctx">JEE Aspirant, Kota</div>
+      </div>
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">Found my engineering college through their listings. The direct admission support saved me weeks of running between offices.</p>
+        <div class="quote-by">Divya Sharma</div>
+        <div class="quote-ctx">B.Tech Student, Punjab</div>
+      </div>
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">Their abroad team got me a scholarship at a US university — at zero cost. I still find that part hard to believe.</p>
+        <div class="quote-by">Rohit Verma</div>
+        <div class="quote-ctx">MS Student, USA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CTA ══════════════ -->
+<section class="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-kicker">Start here</div>
+      <h2>Talk to someone before you decide.</h2>
+      <p>A real counsellor, not a chatbot — for coaching, colleges, hostels, or a university abroad. Still free.</p>
+      <div class="cta-actions">
+        <button class="btn-ink" onclick="window.location.href='https://campusseva.com/contact-us/'">Get free guidance →</button>
+        <a href="https://wa.me/917075283028" target="_blank" class="btn-line">Message us on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

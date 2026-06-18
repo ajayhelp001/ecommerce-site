@@ -117,7 +117,7 @@ const Header = () => {
                                     loginToken ? 
                                     <>
                                         <li><Link to={""} onClick={() => setCartModal(true)} className="iconsimages"><img src="/assets/images/icon/add_to_cart.svg" alt="add_to_cart" /><span>{productItemCount}</span></Link></li>
-                                        <li><Link to={""} className="iconsimages"><img src="/assets/images/icon/wishlist.svg" alt="wishlist" /></Link></li>
+                                        {/* <li><Link to={""} className="iconsimages"><img src="/assets/images/icon/wishlist.svg" alt="wishlist" /></Link></li> */}
                                     </> : ''
                                 }
                                 {
@@ -158,12 +158,12 @@ const Header = () => {
 
                                 <li onClick={openSearch} ><Link type='button' className="iconsimages"><img src="/assets/images/icon/search.svg" alt="search" /></Link></li>
                                 <li><Link  onClick={() => setCartModal(true)} className="iconsimages"><img src="/assets/images/icon/add_to_cart.svg" alt="add_to_cart" /><span>{productItemCount}</span></Link></li>
-                                <li><Link  className="iconsimages"><img src="/assets/images/icon/wishlist.svg" alt="wishlist" /></Link></li>
+                                {/* <li><Link  className="iconsimages"><img src="/assets/images/icon/wishlist.svg" alt="wishlist" /></Link></li> */}
                                 {
                                     loginToken ? 
                                     <>
                                         <li><Link to={""} onClick={() => setCartModal(true)} className="iconsimages"><img src="/assets/images/icon/add_to_cart.svg" alt="add_to_cart" /><span>{productItemCount}</span></Link></li>
-                                        <li><Link to={""} className="iconsimages"><img src="/assets/images/icon/wishlist.svg" alt="wishlist" /></Link></li>
+                                        {/* <li><Link to={""} className="iconsimages"><img src="/assets/images/icon/wishlist.svg" alt="wishlist" /></Link></li> */}
                                     </> : ''
                                 }
                                 {

@@ -71,9 +71,6 @@ const Searchpopup = ({closePopup}) => {
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="  btn themebtn" data-bs-dismiss="modal" onClick={closePopup}>Close <span><img alt="arrow" src="/assets/images/icon/right_arrow.svg" /></span></button>
-            </div>
             </div>
         </div>
     </div>

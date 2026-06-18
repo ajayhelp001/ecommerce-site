@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartFromStorage =
     JSON.parse(localStorage.getItem('cart')) || [];
 
+const billingFromStorage = JSON.parse(localStorage.getItem('billingDetails')) || [];
+
 const cartSummaryFromStorage =
     JSON.parse(localStorage.getItem('cartSummary')) || {
         subtotal: 0,
@@ -19,7 +21,8 @@ const initialState = {
     deliveryOptions: {
         sameDayDelivery: false,
         localPickup: false,
-    }
+    },
+    billingDetails: billingFromStorage,
 };
 
 export const slice = createSlice({
@@ -110,6 +113,16 @@ export const slice = createSlice({
                 'cartSummary',
                 JSON.stringify(action.payload)
             );
+        },
+
+        setBillingDetails(state, action) {
+
+            state.billingDetails  = action.payload;
+
+            localStorage.setItem(
+                'BilingAddress ',
+                JSON.stringify(action.payload)
+            );
         }
 
 
@@ -123,7 +136,8 @@ export const {
     removeCart,
     setCartTotal,
     updateQuantity,
-    setCartSummary
+    setCartSummary,
+    setBillingDetails,
 } = slice.actions;
 
 export default slice.reducer;

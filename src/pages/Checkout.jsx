@@ -3,7 +3,7 @@ import BreadCrumb from '../GlobelComponent/BreadCrumb';
 import { Link } from 'react-router';
 import ThemeButton from '../GlobelComponent/ThemeButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeCart, setCartTotal, updateQuantity, setCartSummary } from '../ProductStore/slice';
+import { removeCart, setCartTotal, updateQuantity, setCartSummary, setBillingDetails } from '../ProductStore/slice';
 import Select from 'react-select';
 
 const Checkout = () => {
@@ -83,6 +83,7 @@ const Checkout = () => {
         setTotalPrice(total);
         dispatchPrice(setCartTotal(total))
         
+        
     }, [sameDayDelivery, localPickup, allProductPrice, offerMessage]);
 
     // console.log(setCartTotal);
@@ -138,13 +139,6 @@ const Checkout = () => {
         setoffer(value) 
     }
 
-    // console.log(offer);
-    // const cartSummary = useSelector(
-    //     state => state.cart.cartSummary
-    // );
-
-
-
     const [applyOffer, setApplyOffer] = useState()
 
     useEffect(() => {
@@ -161,10 +155,12 @@ const Checkout = () => {
             
             const cartData = {
                 subtotal: allProductPrice, 
-                shipping: (sameDayDelivery ? sameDayDeliveryCharge : 0) + (localPickup ? localPickupCharge : 0),
+                shipping: deliveryDate,
+                // shipping: (sameDayDelivery ? sameDayDeliveryCharge : sameDayDelivery) + (localPickup ? localPickupCharge : localPickup),
                 discount: offerPriceAmount,
                 total: totalPrice - offerPriceAmount,
-                coupon: offer
+                coupon: offer,
+                // productDate : 
             }
 
             dispatch(setCartSummary(cartData))
@@ -202,7 +198,7 @@ const Checkout = () => {
 
         dispatch(setCartSummary({
             subtotal: allProductPrice,
-            shipping: (sameDayDelivery ? sameDayDeliveryCharge : 0) + (localPickup ? localPickupCharge : 0),
+            shipping: (sameDayDelivery ? sameDayDeliveryCharge : sameDayDelivery) + (localPickup ? localPickupCharge : localPickup),
             discount: 0,
             total: allProductPrice,
             coupon: ''
@@ -229,7 +225,7 @@ const Checkout = () => {
     const [billingCity, setBillingCity] = useState()
     const [billingZipCode, setBillingZipCode] = useState()
     const [billingPhone, setBillingPhone] = useState()
-    const [billingLocation, setBillingLocation] = useState()
+    // const [billingLocation, setBillingLocation] = useState()
     const [billingAddress, setBillingAddress] = useState()
     const [billingMessage, setBillingMessage] = useState()
 
@@ -238,13 +234,71 @@ const Checkout = () => {
     const [errorBillingCity, setErrorBillingCity] = useState()
     const [errorBillingZipCode, setErrorBillingZipCode] = useState()
     const [errorBillingPhone, setErrorBillingPhone] = useState()
-    const [errorBillingLocation, setErrorBillingLocation] = useState()
+    // const [errorBillingLocation, setErrorBillingLocation] = useState()
     const [errorBillingAddress, setErrorBillingAddress] = useState()
     const [errorBillingMessage, setErrorBillingMessage] = useState()
+    const [bilingSuccessMessage, setbilingSuccessMessage] = useState()
+    
+    const [bilingFormSubmit, setBilingFormSubmit] = useState(false)
 
     const bilingForm = async (e) => {
         e.preventDefault();
+        setBilingFormSubmit(false)
+
+        if (!billingName) {
+            setErrorBillingName('Please enter full name')
+        }
+        if (!billingEmail) {
+            setErrorBillingEmail('Please enter Email')
+        }
+        if (!billingCity) {
+            setErrorBillingCity('Please enter city name')
+        }
+        if (!billingZipCode) {
+            setErrorBillingZipCode('Please enter zip code')
+        }
+        if (!billingPhone) {
+            setErrorBillingPhone('Please enter phone number')
+        }
+        if (!billingAddress) {
+            setErrorBillingAddress('Please enter delivery address')
+        }
+
+        if (billingName && billingEmail && billingCity && billingZipCode && billingPhone && billingAddress) {
+            setErrorBillingName('')
+            setErrorBillingEmail('')
+            setErrorBillingCity('')
+            setErrorBillingZipCode('')
+            setErrorBillingPhone('')
+            setErrorBillingAddress('')
+            setbilingSuccessMessage("🎉 Your billing information has been saved successfully.")
+
+            const generateOrderId = () => {
+                return `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`
+            }
+            const orderId = generateOrderId();
+
+            let bilingData = {billingName, billingEmail, billingCity, billingZipCode, billingPhone, billingAddress, orderId} 
+            dispatch(setBillingDetails(bilingData))
+
+             setActiveStep(3);
+
+            // console.log(bilingData); 
+        }
+
     }
+    
+
+    const bilingData = useSelector(
+        (state) => state.cart.billingDetails
+    );
+    const cartSummaryData = useSelector(
+        (state) => state.cart.cartSummary
+    );
+
+    console.log(bilingData, cartSummaryData);
+    
+
 
 
     const steps = [
@@ -292,7 +346,7 @@ const Checkout = () => {
                                                             <span className="plus" onClick={() => dispatch(updateQuantity({productId: item.productId, quantity: item.quantity >= 5 ? 5 : item.quantity + 1}))}>+</span>
                                                         </div>
                                                     </td>
-                                                    <td>${item.itemTotalPrice}</td>
+                                                    <td>${(item.itemTotalPrice).toFixed(2)}</td>
                                                     <td>
                                                         <ul className="list-unstyled d-flex gap-3 mb-0">
                                                             <li><button onClick={() => dispatch(removeCart(item.productId))} className="actionBtn close shadow-none border-0"><img src="/assets/images/icon/red_close.svg" alt="" /></button></li>
@@ -343,21 +397,21 @@ const Checkout = () => {
                                             </div>
                                         </div>
                                         <div className="col-12"><hr className="m-0" /></div>
-                                        <div className="col-12">
+                                        {/* <div className="col-12">
                                             <div className="row align-items-center">
                                                 <div className="col-4 subtotal">SHIPPING</div>
                                                 <div className="col-8">
                                                     <div className="checkbox mb-1">
-                                                        <input className="form-check-input" onChange={sameDayDeliveryHandlar} type="checkbox" value="" id="flexCheckDefault1" />
+                                                        <input className="form-check-input" id='flexCheckDefault1' onChange={sameDayDeliveryHandlar} type="checkbox" value=""/>
                                                         <label className="form-check-label subtotal" htmlFor="flexCheckDefault1">Same day delivery: ${sameDayDeliveryCharge}</label>
                                                     </div>
                                                     <div className="checkbox mb-1">
-                                                        <input className="form-check-input" onChange={handelLocalPickup} type="checkbox" value="" id="flexCheckDefault2" />
+                                                        <input className="form-check-input" id='flexCheckDefault2' onChange={handelLocalPickup} type="checkbox" value=""/>
                                                         <label className="form-check-label subtotal" htmlFor="flexCheckDefault2">Local pickup: ${localPickupCharge}</label>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="col-12"><hr className="m-0" /></div>
                                         <div className="col-12">
                                             <div className="row align-items-center">
@@ -415,53 +469,67 @@ const Checkout = () => {
             subtitle: "Checkout Your Items List",
             content : (
                 <>
-                <div className="row row-gap-3">
+                <form onSubmit={bilingForm} className="row row-gap-3">
+                    {
+                        bilingSuccessMessage ? <div className="col-12"><p className='m-0 text-center p-2 text-success bg-success bg-opacity-10'>{bilingSuccessMessage}</p></div> : ''
+                    }
                     <div className="col-lg-8">
                         <div className="mb-3"><h5>BILLING DETAILS</h5></div>
-                        <form onSubmit={bilingForm} className="row row-gap-sm-4 row-gap-3">
+                        <div className="row row-gap-sm-4 row-gap-3">
                             <div className="col-sm-6">
                                 <div className="form-floating">
                                     <input type="text" className={`${errorBillingName ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingName(e.target.value)} value={billingName} placeholder="name@example.com" />
                                     <label>Full Name</label>
                                 </div>
+                                {errorBillingName ? <small className='text-danger'>{errorBillingName}</small> : ''}
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-floating">
                                     <input type="email" className={`${errorBillingEmail ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingEmail(e.target.value)} value={billingEmail} placeholder="name@example.com" />
                                     <label>Email Address</label>
                                 </div>
+                                {errorBillingEmail ? <small className='text-danger'>{errorBillingEmail}</small> : ''}
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-floating">
                                     <input type="text" className={`${errorBillingCity ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingCity(e.target.value)} value={billingCity} placeholder="name@example.com" />
                                     <label>Town / City</label>
                                 </div>
+                                {errorBillingCity ? <small className='text-danger'>{errorBillingCity}</small> : ''}
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-floating">
                                     <input type="tel" className={`${errorBillingZipCode ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingZipCode(e.target.value)} value={billingZipCode} placeholder="name@example.com" />
                                     <label>Pincode / Zip</label>
                                 </div>
+                                {errorBillingZipCode ? <small className='text-danger'>{errorBillingZipCode}</small> : ''}
                             </div>
-                            <div className="col-sm-6">
+                            <div className="col-sm-12">
                                 <div className="form-floating">
                                     <input type="tel" className={`${errorBillingPhone ? 'border-danger' : ''} form-control`} onChange={(e) => setBillingPhone(e.target.value)} value={billingPhone} placeholder="name@example.com" />
                                     <label>Phone</label>
                                 </div>
+                                {errorBillingPhone ? <small className='text-danger'>{errorBillingPhone}</small> : ''}
                             </div>
-                            <div className="col-sm-6">
+                            {/* <div className="col-sm-6">
                                 <div className="form-floating bg_none_select2">
                                     <Select options={options} onChange={(e) => setBillingLocation(e.target.value)} value={billingLocation}   />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="col-12">
                                 <textarea id="floatingInput3" placeholder="Street Address" className={`${errorBillingAddress ? 'border-danger' : ''} form-control textarea w-100`} onChange={(e) => setBillingAddress(e.target.value)} value={billingAddress} cols="30" rows="2"></textarea>
+                                {errorBillingAddress ? <small className='text-danger'>{errorBillingAddress}</small> : ''}
                             </div>
                             <div className="col-12">
                                 <textarea id="floatingInput3" placeholder="Order Notes (optional)" className={`${errorBillingMessage ? 'border-danger' : ''} form-control textarea w-100`} onChange={(e) => setBillingMessage(e.target.value)} value={billingMessage} cols="30" rows="8"></textarea>
                             </div>
-                            <div className="col-12 text-end"><button type="submit" className="btn themebtn fill">Submit Now <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button></div>
-                        </form>
+                            <div className="col-12">
+                                <div className="row">
+                                    <div className="col"><ThemeButton btnType={'button'} clickEvent={() => setActiveStep(1)} btnTitle='Back to shop bag'/></div>
+                                    {/* <div className="col-auto "><button type="submit" className="btn themebtn fill">Update Address<span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></button></div> */}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-lg-4">
                         <div className="cartside">
@@ -484,7 +552,7 @@ const Checkout = () => {
                                                         <div key={item.id} className="col-12">
                                                             <div className="row">
                                                                 <div className="col subtotal subcategory">{item.productTitle} <strong className='text-dark'>({item.quantity})</strong></div>
-                                                                <div className="col-auto"><div className="subtotal subcategory">${item.itemTotalPrice}</div></div>
+                                                                <div className="col-auto"><div className="subtotal subcategory">${(item.itemTotalPrice).toFixed(2)}</div></div>
                                                             </div>
                                                         </div>
                                                         )
@@ -511,9 +579,7 @@ const Checkout = () => {
                                             <div className="row align-items-center">
                                                 <div className="col subtotal">Delivery date</div>
                                                 <div className="col-auto subtotal">
-                                                    {
-                                                        sameDayDelivery ? sameDayDeliveryDate : deliveryDate
-                                                    }
+                                                    {cartSummaryData.shipping}
                                                 </div>
                                             </div>
                                         </div>
@@ -580,10 +646,10 @@ const Checkout = () => {
                                     </form>
                                 </div>
                             </div>
-                            <div className="proccedBtn"><Link to={""} className="btn themebtn w-100 fill">Proceed to Checkout <span><img src="/assets/images/icon/right_arrow.svg" alt="arrow" /></span></Link></div>
+                            <div className="proccedBtn"><ThemeButton btnType={'submit'} btnFill={true} btnClass={'w-100'} btnTitle='Proceed Order'/></div>
                         </div>
                     </div>
-                </div>
+                </form>
                 </>
             )
         },
@@ -606,15 +672,15 @@ const Checkout = () => {
                                 <div className="innerbody">
                                     <div className="overview">
                                         <div className="order_name">Order Number</div>
-                                        <div className="order_value">13119</div>
+                                        <div className="order_value">{bilingData.orderId}</div>
                                     </div>
                                     <div className="overview">
                                         <div className="order_name">Date</div>
-                                        <div className="order_value">02/01/2024</div>
+                                        <div className="order_value">{cartSummaryData.shipping}</div>
                                     </div>
                                     <div className="overview">
                                         <div className="order_name">Total</div>
-                                        <div className="order_value">$1499.90</div>
+                                        <div className="order_value">${totalPrice.toFixed(2)}</div>
                                     </div>
                                     <div className="overview">
                                         <div className="order_name">Paymetn Method</div>
@@ -637,27 +703,23 @@ const Checkout = () => {
                                             </div>
                                         </div>
                                         <div className="col-12"><hr className="m-0" /></div>
-                                        <div className="col-12">
-                                            <div className="row row-gap-2 ">
-                                                <div className="col-12">
-                                                    <div className="row">
-                                                        <div className="col subtotal subcategory">Velvet Red Charm</div>
-                                                        <div className="col-auto"><div className="subtotal subcategory">$32.50</div></div>
+                                            {
+                                                cartItems && cartItems.length > 0 ? (
+                                                    cartItems.map((item, index) => 
+                                                    <div key={item.id} className="col-12">
+                                                        <div className="row">
+                                                            <div className="col subtotal subcategory">{item.productTitle} <strong className='text-dark'>({item.quantity})</strong></div>
+                                                            <div className="col-auto"><div className="subtotal subcategory">${(item.itemTotalPrice).toFixed(2)}</div></div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="row">
-                                                        <div className="col subtotal subcategory">Hydrating Waves</div>
-                                                        <div className="col-auto"><div className="subtotal subcategory">$69.50</div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                    )
+                                                ) : ''
+                                            }
                                         <div className="col-12"><hr className="m-0" /></div>
                                         <div className="col-12">
                                             <div className="row">
                                                 <div className="col subtotal">SUBTOTAL</div>
-                                                <div className="col-auto subtotal">$120.40</div>
+                                                <div className="col-auto subtotal">${allProductPrice.toFixed(2)}</div>
                                             </div>
                                         </div>
                                         <div className="col-12"><hr className="m-0" /></div>
@@ -670,15 +732,15 @@ const Checkout = () => {
                                         <div className="col-12"><hr className="m-0" /></div>
                                         <div className="col-12">
                                             <div className="row">
-                                                <div className="col subtotal">VAT</div>
-                                                <div className="col-auto subtotal">$100</div>
+                                                <div className="col subtotal">Offer Price</div>
+                                                <div className="col-auto subtotal">${cartSummaryData.discount}</div>
                                             </div>
                                         </div>
                                         <div className="col-12"><hr className="m-0" /></div>
                                         <div className="col-12">
                                             <div className="row">
                                                 <div className="col subtotal">TOTAL</div>
-                                                <div className="col-auto subtotal">$1400</div>
+                                                <div className="col-auto subtotal">${totalPrice.toFixed(2)}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -717,8 +779,8 @@ const Checkout = () => {
                                     {
                                         steps.map((item, index) => 
                                             <li key={item.id} className={`col-md-4 col-12 nav-item ${item.id === 1 ? 'pe-md-0' : item.id === 2 ? 'px-md-0' : item.id === 3 ? 'ps-md-0' : ''} `} role="presentation">
+                                                <button className={`nav-link w-100 ${activeStep === item.id ? 'active' : activeStep > item.id ? 'is_active' : ''}`}>{item.number} <div className="step">{item.title}<span>{item.subtitle}</span></div></button>
                                                 {/* <button className={`nav-link w-100 ${activeStep === item.id ? 'active' : activeStep > item.id ? 'is_active' : ''}`} onClick={() => setActiveStep(item.id)} id={`pills-${item.id}-tab`} data-bs-toggle="pill" data-bs-target={`#pills-${item.id}`} type="button" role="tab" aria-controls={`pills-${item.id}`} aria-selected={activeStep === item.id ? true : false}>{item.number} <div className="step">{item.title}<span>{item.subtitle}</span></div></button> */}
-                                                <button className={`nav-link w-100 ${activeStep === item.id ? 'active' : activeStep > item.id ? 'is_active' : ''}`} onClick={() => setActiveStep(item.id)} id={`pills-${item.id}-tab`} data-bs-toggle="pill" data-bs-target={`#pills-${item.id}`} type="button" role="tab" aria-controls={`pills-${item.id}`} aria-selected={activeStep === item.id ? true : false}>{item.number} <div className="step">{item.title}<span>{item.subtitle}</span></div></button>
                                             </li>
                                         )
                                     }
