@@ -9,7 +9,7 @@ const Footer = () => {
         { LinkTitle : 'contact Us', linkUrl : '/contact-us'}
     ]
     const usefullLink = [
-        { LinkTitle : 'New Products', linkUrl : ''},
+        { LinkTitle : 'New Products', linkUrl : '/product'},
         { LinkTitle : 'Privacy Policy', linkUrl : ''},
         { LinkTitle : 'Terms & Conditions', linkUrl : ''},
         { LinkTitle : 'Shipping FAQ', linkUrl : ''}

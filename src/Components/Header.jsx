@@ -152,7 +152,7 @@ const Header = () => {
                         <ul className="navbar-nav justify-content-center align-items-lg-center flex-grow-1">
                             {
                                 navbarNav.map((navs, index) =>
-                                    <li key={index} className="nav-item"><NavLink to={navs.NavLinkItem} className="nav-link">{navs.NavTitle}</NavLink></li>
+                                    <li key={index} className="nav-item"><NavLink to={navs.NavLinkItem} onClick={() => setShowMenu(false)} className="nav-link">{navs.NavTitle}</NavLink></li>
                                 )
                             }
                         </ul>
