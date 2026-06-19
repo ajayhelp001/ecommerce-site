@@ -17,10 +17,10 @@ const BreadCrumb = ({pageTitle}) => {
                         {
                             pathname.map((value, index) => {
                                 const to = `/${pathname.slice(0, index + 1).join('/')}`;
-                                const name = value.charAt(0).toUpperCase().replaceAll(" ", "-") + value.slice(1);
+                                const name = value.charAt(0).toUpperCase().replaceAll("-", " ") + value.slice(1);
                                 return (
                                     <>
-                                        <li className="breadcrumb-item" key={index}> <Link to={to}>{name}</Link> </li>
+                                        <li className="breadcrumb-item" key={index}> <Link to={to}>{pageTitle ? pageTitle : name}</Link> </li>
                                     </>
                                 );
                             })

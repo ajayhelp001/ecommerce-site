@@ -16,7 +16,7 @@ const Blog = () => {
   
   return (
     <>
-    <BreadCrumb/>
+    <BreadCrumb pageTitle={'hello'}/>
     <section className='whichlist_section'>
       <div className="container">
         <div className="row">
@@ -32,9 +32,10 @@ const Blog = () => {
                           postImg={post.image? post.image : `/assets/images/blog-${post.id  <= 6 ? index + 1 : 6}.jpg`}
                           postTitle={post.title}
                           postDiscription={post.body}
-                          postViews={post.views}
+                          postViews={post.views }
                           postCommentCount={post.userId}
                           postTags={post.tags[0]}
+                          postLink={post.title.toLowerCase().replace(/\s+/g, "-")}
                       />
                   </div>
               ))}
