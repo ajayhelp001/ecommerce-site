@@ -12,11 +12,23 @@ const Blog = () => {
       })
   }, [])
 
+
+  const createSlug = (title) => {
+      return title
+        .toLowerCase()
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+    };
+
   console.log(postData);
   
   return (
     <>
-    <BreadCrumb pageTitle={'hello'}/>
+    <BreadCrumb/>
     <section className='whichlist_section'>
       <div className="container">
         <div className="row">
@@ -35,7 +47,7 @@ const Blog = () => {
                           postViews={post.views }
                           postCommentCount={post.userId}
                           postTags={post.tags[0]}
-                          postLink={post.title.toLowerCase().replace(/\s+/g, "-")}
+                          postLink={createSlug(post.title)}
                       />
                   </div>
               ))}

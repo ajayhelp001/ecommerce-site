@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SectionHeading = ({mianHeading, subHeading}) => {
+const SectionHeading = ({mianHeading, subHeading, headingClass}) => {
   return (
     <>
-        <div className="heading">{mianHeading} <span>{subHeading}</span></div>
+        <div className={`heading ${headingClass}`}>{mianHeading} <span>{subHeading}</span></div>
     </>
   )
 }

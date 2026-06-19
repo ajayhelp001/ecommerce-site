@@ -398,7 +398,7 @@ const SingleProduct = () => {
 
         
       )
-        : (<h2>Product Not Found</h2>)}
+        : (<section className='p_details_section'><div className="container"><h2>Loading...</h2></div></section>)}
     </>
   )
 }
