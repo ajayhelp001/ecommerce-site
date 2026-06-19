@@ -122,7 +122,10 @@ const Header = () => {
                                 }
                                 {
                                     loginToken ?  <li onClick={handalLogout} ><Link className="iconsimages"><img src="/assets/images/icon/logout.svg" alt="user" /></Link></li> :
+                                    <>
                                     <li><Link to={'/signup'} className="iconsimages"><img src="/assets/images/icon/user.svg" alt="user" /></Link></li>
+                                    <li><Link to={""} onClick={() => setCartModal(true)} className="iconsimages"><img src="/assets/images/icon/add_to_cart.svg" alt="add_to_cart" /><span>{productItemCount}</span></Link></li>
+                                    </>
                                 }
                             {/* {
                                 nevigate.map((item, index) => 
