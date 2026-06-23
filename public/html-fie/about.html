@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>About Us | Campus Seva — India's Trusted Education Discovery Platform</title>
+<meta name="description" content="Campus Seva helps Indian students find the right coaching, college, school & hostel. Founded by Ajay Saini, we make education discovery simple, honest & free for every student in India."/>
+<meta name="keywords" content="about campus seva, campus seva founder, campus seva team, education platform India, college discovery India"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://campusseva.com/about-campus-seva/"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet"/>
+
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<style>
+:root{
+  --theme1:#df2600;--theme2:#3d3d3d;--theme3:#F5F5F5;
+  --white:#ffffff;--black:#000;
+  --gray-200:#e9ecef;--gray-300:#dee2e6;--gray-400:#ced4da;
+  --gray-500:#adb5bd;--gray-600:#6c757d;--gray-700:#495057;
+  --fs-12:12px;--fs-13:13px;--fs-14:14px;--fs-16:16px;--fs-18:18px;--fs-20:20px;
+  --fw-400:400;--fw-500:500;--fw-600:600;--fw-700:700;--fw-800:800;
+  --theme1-light:rgba(223,38,0,0.08);--theme1-mid:rgba(223,38,0,0.15);
+  --shadow-sm:0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md:0 6px 24px rgba(0,0,0,0.10);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.14);
+  --radius:14px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--theme2);background:var(--white);font-size:var(--fs-16);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Sora',sans-serif;line-height:1.2}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ─── BREADCRUMB ─── */
+.breadcrumb-bar{background:var(--theme3);padding:10px 0;border-bottom:1px solid var(--gray-200)}
+.breadcrumb-bar nav{font-size:var(--fs-13);color:var(--gray-600);display:flex;align-items:center;gap:6px}
+.breadcrumb-bar nav a{color:var(--theme1)}
+.breadcrumb-bar nav span.sep{color:var(--gray-400)}
+
+/* ─── HERO (same gradient/eyebrow/cta pattern as abroad page) ─── */
+.hero{background:linear-gradient(135deg,#1a0a00 0%,#2d1a10 40%,#1a0a00 100%);position:relative;overflow:hidden;padding:80px 0 60px;color:var(--white)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(223,38,0,0.22) 0%,transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--theme1-mid);border:1px solid rgba(223,38,0,0.3);color:#ff7a5c;font-size:var(--fs-13);font-weight:var(--fw-600);padding:6px 14px;border-radius:40px;margin-bottom:20px;letter-spacing:.4px}
+.hero-eyebrow .dot{width:6px;height:6px;background:#ff7a5c;border-radius:50%;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.hero h1{font-size:clamp(32px,4vw,52px);font-weight:var(--fw-800);line-height:1.15;margin-bottom:20px;color:var(--white)}
+.hero h1 .accent{color:var(--theme1)}
+.hero-desc{font-size:var(--fs-18);color:rgba(255,255,255,.75);margin-bottom:32px;max-width:560px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--theme1);color:var(--white);padding:14px 30px;border-radius:8px;font-size:var(--fs-16);font-weight:var(--fw-700);border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(223,38,0,0.35);font-family:'Inter',sans-serif}
+.btn-primary:hover{background:#c42000;transform:translateY(-2px);box-shadow:0 8px 24px rgba(223,38,0,0.4)}
+.btn-outline{background:transparent;color:var(--white);padding:14px 28px;border-radius:8px;font-size:var(--fs-16);font-weight:var(--fw-600);border:1.5px solid rgba(255,255,255,.3);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.6)}
+
+/* founder visual card inside hero (mirrors abroad's hero-form-card) */
+.hero-visual-card{background:var(--white);border-radius:var(--radius);padding:32px 28px;box-shadow:var(--shadow-lg);color:var(--theme2);text-align:center}
+.hero-visual-mark{width:100px;height:100px;border-radius:50%;background:var(--theme1);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:34px;font-weight:800;margin:0 auto 18px;box-shadow:0 0 0 8px var(--theme1-light)}
+.hero-visual-card h3{font-size:var(--fs-20);font-weight:700;color:var(--black);margin-bottom:2px}
+.hero-visual-card .role{font-size:var(--fs-13);color:var(--theme1);font-weight:600;margin-bottom:18px}
+.hero-visual-card p{font-size:var(--fs-14);color:var(--gray-600);line-height:1.65;margin-bottom:0}
+.hero-visual-divider{height:1px;background:var(--gray-200);margin:18px 0}
+.hero-visual-stats{display:flex;justify-content:center;gap:28px}
+.hvs-item strong{display:block;font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:var(--theme1)}
+.hvs-item span{font-size:11px;color:var(--gray-600)}
+
+/* ─── STATS BAR (identical pattern to abroad page) ─── */
+.stats-bar{background:var(--theme3);padding:40px 0}
+.stats-row{display:flex;gap:0}
+.stat-box{flex:1;text-align:center;padding:20px;border-right:1px solid var(--gray-300)}
+.stat-box:last-child{border-right:none}
+.stat-box .num{font-family:'Sora',sans-serif;font-size:38px;font-weight:var(--fw-800);color:var(--theme1);display:block}
+.stat-box .lbl{font-size:var(--fs-14);color:var(--gray-600);margin-top:4px}
+
+/* ─── SECTION BASE (same as abroad page) ─── */
+.section{padding:80px 0}
+.section-light{background:var(--theme3)}
+.section-dark{background:var(--theme2);color:var(--white)}
+.section-head{text-align:center;margin-bottom:52px}
+.section-head .eyebrow{display:inline-block;color:var(--theme1);font-size:var(--fs-13);font-weight:var(--fw-700);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;padding:4px 14px;background:var(--theme1-light);border-radius:40px}
+.section-dark .section-head .eyebrow{background:rgba(223,38,0,.2);color:#ff8a70}
+.section-head h2{font-size:clamp(26px,3vw,40px);font-weight:var(--fw-800);margin-bottom:14px;color:var(--black)}
+.section-dark .section-head h2{color:var(--white)}
+.section-head p{font-size:var(--fs-18);color:var(--gray-600);max-width:600px;margin:0 auto}
+.section-dark .section-head p{color:rgba(255,255,255,.65)}
+
+/* ─── WHY-STRIP MARQUEE (exact pattern from abroad page) ─── */
+.why-strip{background:var(--white);border-top:3px solid var(--theme1);border-bottom:1px solid var(--gray-200);padding:18px 0;overflow:hidden;position:relative}
+.why-strip::before,.why-strip::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.why-strip::before{left:0;background:linear-gradient(to right,var(--white),transparent)}
+.why-strip::after{right:0;background:linear-gradient(to left,var(--white),transparent)}
+.why-strip-inner{display:flex;align-items:center;width:max-content;animation:marqueeScroll 28s linear infinite}
+.why-strip-inner:hover{animation-play-state:paused}
+@keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.why-item{display:flex;align-items:center;gap:10px;padding:8px 32px;white-space:nowrap;flex-shrink:0;font-size:var(--fs-14);font-weight:var(--fw-500);color:var(--theme2);border-right:1px solid var(--gray-200)}
+.why-item .icon{font-size:20px}
+.why-item strong{color:var(--theme1)}
+
+/* ─── ABOUT/STORY SPLIT ─── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about-visual{position:relative}
+.about-visual-block{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);height:380px;background:linear-gradient(135deg,#1a0a00 0%,#2d1a10 60%,#1a0a00 100%);display:flex;align-items:center;justify-content:center;position:relative}
+.about-visual-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 40%,rgba(223,38,0,.25),transparent 70%)}
+.about-visual-block span{font-size:84px;position:relative;z-index:1}
+.about-badge{position:absolute;bottom:-20px;right:-16px;background:var(--theme1);color:var(--white);border-radius:var(--radius);padding:18px 24px;box-shadow:var(--shadow-md);text-align:center}
+.about-badge strong{font-family:'Sora',sans-serif;font-size:30px;font-weight:900;display:block}
+.about-badge span{font-size:11px;font-weight:600;opacity:.85}
+.about-points{display:flex;flex-direction:column;gap:14px;margin:24px 0 28px}
+.about-point{display:flex;align-items:flex-start;gap:12px}
+.check{width:22px;height:22px;background:var(--theme1-light);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--theme1);font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px}
+.about-point p{font-size:var(--fs-15);color:var(--theme2);margin:0}
+
+/* ─── PILLARS (benefit-card pattern, same as abroad) ─── */
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pillar-card{background:var(--white);border-radius:var(--radius);padding:28px;border:1.5px solid var(--gray-200);transition:border-color .2s,box-shadow .2s,transform .2s}
+.pillar-card:hover{border-color:var(--theme1);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.pillar-icon{width:52px;height:52px;background:var(--theme1-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.pillar-card h4{font-size:var(--fs-16);font-weight:var(--fw-700);margin-bottom:8px;color:var(--black)}
+.pillar-card p{font-size:var(--fs-14);color:var(--gray-600);line-height:1.55}
+
+/* ─── VALUES GRID (4-up) ─── */
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.value-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:26px 20px;text-align:center;transition:all .3s}
+.value-card:hover{border-color:var(--theme1);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.value-icon-circle{width:56px;height:56px;background:var(--theme1-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px}
+.value-card h4{font-size:var(--fs-15);font-weight:700;color:var(--black);margin-bottom:6px}
+.value-card p{font-size:var(--fs-13);color:var(--gray-600);line-height:1.5}
+
+/* ─── SERVICES (course-card pattern from abroad) ─── */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.svc-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:24px;transition:all .3s;position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;left:0;top:0;width:4px;height:0;background:var(--theme1);transition:height .3s}
+.svc-card:hover{border-color:var(--theme1);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.svc-card:hover::before{height:100%}
+.svc-icon{font-size:28px;margin-bottom:14px}
+.svc-card h3{font-size:var(--fs-16);font-weight:var(--fw-700);color:var(--black);margin-bottom:8px}
+.svc-card p{font-size:var(--fs-13);color:var(--gray-600);line-height:1.6;margin-bottom:14px}
+.svc-tags{display:flex;flex-wrap:wrap;gap:5px}
+.pill{background:var(--theme1-light);color:var(--theme1);font-size:11px;font-weight:var(--fw-600);padding:3px 9px;border-radius:40px}
+
+/* ─── PROCESS STEPS (exact pattern from abroad) ─── */
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;max-width:1000px;margin:0 auto}
+.process-steps::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:2px;background:var(--gray-200);z-index:0}
+.step-item{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 16px;position:relative;z-index:1}
+.step-number{width:72px;height:72px;border-radius:50%;background:var(--white);border:3px solid var(--theme1);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:22px;font-weight:var(--fw-800);color:var(--theme1);margin-bottom:16px;box-shadow:0 0 0 6px var(--theme1-light);transition:all .3s}
+.step-item:hover .step-number{background:var(--theme1);color:var(--white)}
+.step-title{font-size:var(--fs-16);font-weight:var(--fw-700);margin-bottom:6px;color:var(--black)}
+.step-desc{font-size:var(--fs-13);color:var(--gray-600);line-height:1.5}
+
+/* ─── FOUNDER / CEO (split card, same visual language as hero-form-card) ─── */
+.founder-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);display:grid;grid-template-columns:320px 1fr}
+.founder-visual{background:linear-gradient(135deg,#1a0a00 0%,#2d1a10 60%,#1a0a00 100%);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center}
+.founder-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 35%,rgba(223,38,0,.3),transparent 70%)}
+.founder-mark{width:120px;height:120px;border-radius:50%;background:var(--theme1);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:42px;font-weight:900;position:relative;z-index:1;box-shadow:0 0 0 8px rgba(223,38,0,.18);margin-bottom:16px}
+.founder-visual .ftag{position:relative;z-index:1;color:#ff8a70;font-size:var(--fs-13);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.founder-info{padding:36px 40px}
+.founder-info .eyebrow{display:inline-block;color:var(--theme1);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;padding:3px 12px;background:var(--theme1-light);border-radius:40px}
+.founder-info h3{font-size:var(--fs-20);font-weight:800;color:var(--black);margin-bottom:2px}
+.founder-info .role{font-size:var(--fs-14);color:var(--theme1);font-weight:600;margin-bottom:18px}
+.founder-info p{font-size:var(--fs-15);color:var(--gray-600);line-height:1.75;margin-bottom:14px}
+.founder-info p:last-child{margin-bottom:0}
+
+/* ─── FOUNDER OWL CAROUSEL ─── */
+.founder-slider .owl-stage-outer{border-radius:var(--radius)}
+.founder-slider .owl-item .founder-card{box-shadow:none;margin:0}
+.founder-slider .owl-dots{display:flex;justify-content:center;gap:8px;margin-top:28px}
+.founder-slider .owl-dot span{width:9px;height:9px;margin:0;background:var(--gray-300);border-radius:50%;display:block;transition:all .25s}
+.founder-slider .owl-dot.active span{background:var(--theme1);width:26px;border-radius:5px}
+.founder-slider .owl-dot:hover span{background:var(--theme1)}
+
+/* ─── TEAM (course-card pattern, 4-up) ─── */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.team-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:all .3s;text-align:center}
+.team-card:hover{border-color:var(--theme1);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+.team-banner{height:88px;background:linear-gradient(135deg,#1a0a00,#2d1a10);position:relative}
+.team-mark-wrap{display:flex;justify-content:center;margin-top:-38px;position:relative}
+.team-mark{width:76px;height:76px;border-radius:50%;background:var(--theme1);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:24px;font-weight:800;border:4px solid var(--white);box-shadow:var(--shadow-sm)}
+.team-card-body{padding:14px 16px 22px}
+.team-card-body h4{font-size:var(--fs-16);font-weight:700;color:var(--black);margin-bottom:3px}
+.team-role{font-size:var(--fs-13);color:var(--theme1);font-weight:600;margin-bottom:10px}
+.team-card-body p{font-size:12.5px;color:var(--gray-600);line-height:1.55}
+
+/* ─── TESTIMONIALS (exact pattern from abroad) ─── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:28px;transition:border-color .2s}
+.testi-card:hover{border-color:rgba(223,38,0,.5)}
+.testi-stars{color:#fbbf24;font-size:18px;margin-bottom:14px;letter-spacing:2px}
+.testi-text{font-size:var(--fs-15);color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:20px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--theme1);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:var(--fs-16);font-weight:700;color:var(--white);flex-shrink:0}
+.testi-name{font-size:var(--fs-14);font-weight:700;color:var(--white)}
+.testi-sub{font-size:var(--fs-12);color:rgba(255,255,255,.5)}
+
+/* ─── CTA BAND (exact pattern from abroad) ─── */
+.cta-band{background:linear-gradient(135deg,var(--theme1) 0%,#b51d00 100%);padding:64px 0;text-align:center;color:var(--white);position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;width:500px;height:500px;background:rgba(255,255,255,.04);border-radius:50%;top:-200px;right:-100px;pointer-events:none}
+.cta-band h2{font-size:clamp(26px,3vw,40px);font-weight:var(--fw-800);margin-bottom:12px;color:var(--white)}
+.cta-band p{font-size:var(--fs-18);color:rgba(255,255,255,.82);margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;position:relative}
+.btn-white{background:var(--white);color:var(--theme1);padding:14px 36px;border-radius:8px;font-size:var(--fs-16);font-weight:var(--fw-700);border:none;cursor:pointer;font-family:'Sora',sans-serif;transition:all .2s;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.btn-cta-outline{background:transparent;color:var(--white);padding:13px 28px;border-radius:8px;font-size:var(--fs-16);font-weight:var(--fw-600);border:2px solid rgba(255,255,255,.5);cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+.btn-cta-outline:hover{background:rgba(255,255,255,.1);border-color:var(--white)}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-visual-card{max-width:420px;margin:0 auto}
+  .about-grid{grid-template-columns:1fr}
+  .about-visual{order:2}
+  .pillars-grid{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:repeat(2,1fr)}
+  .process-steps{grid-template-columns:repeat(2,1fr);gap:24px}
+  .process-steps::before{display:none}
+  .founder-card{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .stats-row{flex-wrap:wrap}
+  .stat-box{flex:1 1 50%;border-bottom:1px solid var(--gray-300)}
+}
+@media(max-width:640px){
+  .section{padding:56px 0}
+  .hero{padding:50px 0 40px}
+  .hero-actions{flex-direction:column}
+  .btn-primary,.btn-outline{width:100%;justify-content:center}
+  .values-grid{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .cta-btns{flex-direction:column;align-items:center}
+  .btn-white,.btn-cta-outline{width:100%;text-align:center;justify-content:center}
+  .stat-box{flex:1 1 100%}
+  .why-item{padding:8px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <nav>
+      <a href="https://campusseva.com">Home</a>
+      <span class="sep">›</span>
+      <span>About Us</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow"><span class="dot"></span> Our Story</div>
+        <h1>Helping Every Student Find Their <span class="accent">Right Path</span></h1>
+        <p class="hero-desc">Campus Seva is India's trusted education discovery platform — built to make finding the right coaching, college, school, hostel or university abroad simple, honest and completely free.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="window.location.href='https://campusseva.com/contact-us/'">🎓 Get Free Guidance</button>
+          <a href="#team" class="btn-outline">👥 Meet the Team</a>
+        </div>
+      </div>
+
+      <div class="hero-visual-card reveal">
+        <div class="hero-visual-mark">AS</div>
+        <h3>Ajay Saini</h3>
+        <div class="role">Founder & CEO, Campus Seva</div>
+        <p>"Built to give every student honest information — not agent commissions — when it matters most."</p>
+        <div class="hero-visual-divider"></div>
+        <div class="hero-visual-stats">
+          <div class="hvs-item"><strong>2,000+</strong><span>Students Guided</span></div>
+          <div class="hvs-item"><strong>₹0</strong><span>Cost to Students</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY STRIP -->
+<div class="why-strip">
+  <div class="why-strip-inner">
+    <div class="why-item"><span class="icon">✅</span><span><strong>Verified</strong> Institute Listings</span></div>
+    <div class="why-item"><span class="icon">💰</span><span><strong>Zero</strong> Cost for Students</span></div>
+    <div class="why-item"><span class="icon">🎯</span><span><strong>Direct</strong> Admission Support</span></div>
+    <div class="why-item"><span class="icon">🌍</span><span><strong>8 Countries</strong> for Study Abroad</span></div>
+    <div class="why-item"><span class="icon">🤝</span><span><strong>No Agent</strong> Commissions</span></div>
+    <div class="why-item"><span class="icon">📞</span><span><strong>Real Counsellors</strong>, Not Bots</span></div>
+    <div class="why-item"><span class="icon">🏆</span><span><strong>2,000+</strong> Students Guided</span></div>
+    <div class="why-item"><span class="icon">✅</span><span><strong>Verified</strong> Institute Listings</span></div>
+    <div class="why-item"><span class="icon">💰</span><span><strong>Zero</strong> Cost for Students</span></div>
+    <div class="why-item"><span class="icon">🎯</span><span><strong>Direct</strong> Admission Support</span></div>
+    <div class="why-item"><span class="icon">🌍</span><span><strong>8 Countries</strong> for Study Abroad</span></div>
+    <div class="why-item"><span class="icon">🤝</span><span><strong>No Agent</strong> Commissions</span></div>
+    <div class="why-item"><span class="icon">📞</span><span><strong>Real Counsellors</strong>, Not Bots</span></div>
+    <div class="why-item"><span class="icon">🏆</span><span><strong>2,000+</strong> Students Guided</span></div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-row reveal">
+      <div class="stat-box"><span class="num">58+</span><div class="lbl">Colleges Listed</div></div>
+      <div class="stat-box"><span class="num">25+</span><div class="lbl">Coaching Institutes</div></div>
+      <div class="stat-box"><span class="num">7+</span><div class="lbl">Student Hostels</div></div>
+      <div class="stat-box"><span class="num">8</span><div class="lbl">Abroad Countries</div></div>
+      <div class="stat-box"><span class="num">₹0</span><div class="lbl">Fee for Students</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ OUR STORY ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-visual-block"><span>🎓</span></div>
+        <div class="about-badge"><strong>100%</strong><span>Free for Students</span></div>
+      </div>
+      <div class="reveal">
+        <div class="section-head" style="text-align:left;margin-bottom:24px">
+          <span class="eyebrow">Why We Started</span>
+          <h2>Choosing a College Shouldn't Feel Like Gambling</h2>
+        </div>
+        <p style="font-size:var(--fs-16);color:var(--gray-600);margin-bottom:16px;line-height:1.75">Every year, lakhs of Indian students struggle to make one of the biggest decisions of their lives — which coaching institute to join, which college to apply to, where to live. Too often, that decision is made on rumors, agent commissions, or whoever shouts the loudest.</p>
+        <div class="about-points">
+          <div class="about-point"><div class="check">✓</div><p><strong>Verified information only</strong> — no paid rankings or fake reviews</p></div>
+          <div class="about-point"><div class="check">✓</div><p><strong>Direct admission support</strong> — apply straight through Campus Seva</p></div>
+          <div class="about-point"><div class="check">✓</div><p><strong>Zero consultancy fee</strong> — always free for every student</p></div>
+        </div>
+        <button class="btn-primary" onclick="window.location.href='https://campusseva.com/contact-us/'">Know More →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ MISSION / VISION / PROMISE ══════════════ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What Drives Us</span>
+      <h2>Our Mission & Vision</h2>
+      <p>Built on a simple belief — every student deserves clear, honest information to shape their future.</p>
+    </div>
+    <div class="pillars-grid reveal">
+      <div class="pillar-card">
+        <div class="pillar-icon">🎯</div>
+        <h4>Our Mission</h4>
+        <p>To make quality education discovery accessible to every Indian student — regardless of city, background or budget — by replacing confusion and agent commissions with verified, transparent information.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🌍</div>
+        <h4>Our Vision</h4>
+        <p>To become India's most trusted name in education guidance — the first place every student and parent turns to when deciding where to study, in India or abroad.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🤝</div>
+        <h4>Our Promise</h4>
+        <p>Zero consultancy fees, zero hidden agendas. We earn from our partner institutes, not from students — so our advice always stays focused on what's right for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CORE VALUES ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Values</span>
+      <h2>What We Stand For</h2>
+      <p>The principles that guide every recommendation we make.</p>
+    </div>
+    <div class="values-grid reveal">
+      <div class="value-card">
+        <div class="value-icon-circle">✅</div>
+        <h4>Transparency</h4>
+        <p>Verified information, no paid rankings or fake reviews</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon-circle">💸</div>
+        <h4>Free Access</h4>
+        <p>Zero cost for students — always has been, always will be</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon-circle">🎓</div>
+        <h4>Student First</h4>
+        <p>Every decision made keeping the student's future in mind</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon-circle">⚡</div>
+        <h4>Simplicity</h4>
+        <p>Complex decisions made simple, fast and stress-free</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ WHAT WE DO ══════════════ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What We Do</span>
+      <h2>Everything a Student Needs, In One Place</h2>
+      <p>From choosing a coaching institute to flying abroad for higher studies.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="svc-card">
+        <div class="svc-icon">📚</div>
+        <h3>Coaching & Academy</h3>
+        <p>JEE, NEET & competitive exam coaching institutes with verified results and faculty info.</p>
+        <div class="svc-tags"><span class="pill">JEE</span><span class="pill">NEET</span><span class="pill">25+ Institutes</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🏛️</div>
+        <h3>Colleges & Universities</h3>
+        <p>Engineering, medical & university listings with direct admission support across India.</p>
+        <div class="svc-tags"><span class="pill">Engineering</span><span class="pill">Medical</span><span class="pill">58+ Colleges</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🏠</div>
+        <h3>Hostels & PG</h3>
+        <p>Safe, affordable student accommodation near colleges and coaching hubs nationwide.</p>
+        <div class="svc-tags"><span class="pill">Hostels</span><span class="pill">PG</span><span class="pill">7+ Listed</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">✈️</div>
+        <h3>Study Abroad</h3>
+        <p>8 countries, 500+ partner universities, free counselling and complete visa support.</p>
+        <div class="svc-tags"><span class="pill">USA</span><span class="pill">UK</span><span class="pill">8 Countries</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ OUR JOURNEY (process steps pattern) ══════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Journey</span>
+      <h2>How Campus Seva Came to Be</h2>
+      <p>From one city's problem to a platform serving students across India and abroad.</p>
+    </div>
+    <div class="process-steps reveal">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-title">The Problem</div>
+        <div class="step-desc">Students in Kota choosing coaching based on hearsay & agent commissions.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-title">Campus Seva Born</div>
+        <div class="step-desc">Verified coaching & college listings, completely free for students.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-title">Expansion</div>
+        <div class="step-desc">Grew to cover colleges, schools & hostels across multiple states.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-title">Going Global</div>
+        <div class="step-desc">Launched Study Abroad — 500+ universities, 8 countries, upto 50% scholarships.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">5</div>
+        <div class="step-title">Today</div>
+        <div class="step-desc">2,000+ students guided — same promise: honest, free, student-first.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOUNDER ══════════════ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Leadership</span>
+      <h2>A Message from Our Founder</h2>
+    </div>
+
+    <div class="founder-slider owl-carousel reveal">
+
+      <!-- Slide 1: Vision -->
+      <div class="item">
+        <div class="founder-card">
+          <div class="founder-visual">
+            <div class="founder-mark">AS</div>
+            <span class="ftag">Founder & CEO</span>
+          </div>
+          <div class="founder-info">
+            <span class="eyebrow">Our Vision</span>
+            <h3>Ajay Saini</h3>
+            <div class="role">Founder & Chief Executive Officer, Campus Seva</div>
+            <p>"I started Campus Seva after watching too many bright students make the wrong choice — not because they lacked ability, but because they lacked the right information at the right time."</p>
+            <p>"My vision is simple: every student in India, regardless of their city or background, should have access to the same honest, verified information when deciding their future."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Promise -->
+      <div class="item">
+        <div class="founder-card">
+          <div class="founder-visual">
+            <div class="founder-mark">AS</div>
+            <span class="ftag">Founder & CEO</span>
+          </div>
+          <div class="founder-info">
+            <span class="eyebrow">Our Promise</span>
+            <h3>Ajay Saini</h3>
+            <div class="role">Founder & Chief Executive Officer, Campus Seva</div>
+            <p>"Every feature we build, every institute we list, comes back to one question: does this genuinely help a student make a better decision? If the answer is no, we don't build it."</p>
+            <p>"We're just getting started — but our commitment to keeping this platform free, honest and student-first will never change."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Future -->
+      <div class="item">
+        <div class="founder-card">
+          <div class="founder-visual">
+            <div class="founder-mark">AS</div>
+            <span class="ftag">Founder & CEO</span>
+          </div>
+          <div class="founder-info">
+            <span class="eyebrow">The Road Ahead</span>
+            <h3>Ajay Saini</h3>
+            <div class="role">Founder & Chief Executive Officer, Campus Seva</div>
+            <p>"We're expanding beyond Kota and Rajasthan — bringing the same verified, transparent approach to colleges, hostels and study-abroad guidance across every state in India."</p>
+            <p>"The goal for the next chapter is simple: become the first place every student and parent turns to before making an education decision — in India or abroad."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ OUR TEAM ══════════════ -->
+<section class="section" id="team">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Meet the Team</span>
+      <h2>The People Behind Campus Seva</h2>
+      <p>A small, focused team working every day to make education discovery simpler for Indian students.</p>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="team-banner"></div>
+        <div class="team-mark-wrap"><div class="team-mark">AS</div></div>
+        <div class="team-card-body">
+          <h4>Ajay Saini</h4>
+          <div class="team-role">Founder & CEO</div>
+          <p>Leads the vision and strategy behind Campus Seva's mission to simplify education discovery.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-banner"></div>
+        <div class="team-mark-wrap"><div class="team-mark">RM</div></div>
+        <div class="team-card-body">
+          <h4>Riya Mehta</h4>
+          <div class="team-role">Head of Admissions Counselling</div>
+          <p>Guides students through coaching, college & university admissions with 6+ years of experience.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-banner"></div>
+        <div class="team-mark-wrap"><div class="team-mark">KV</div></div>
+        <div class="team-card-body">
+          <h4>Karan Verma</h4>
+          <div class="team-role">Study Abroad Specialist</div>
+          <p>Helps students navigate university selection, scholarships & visa processes for studying abroad.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-banner"></div>
+        <div class="team-mark-wrap"><div class="team-mark">SP</div></div>
+        <div class="team-card-body">
+          <h4>Sneha Patil</h4>
+          <div class="team-role">Partnerships & Outreach Lead</div>
+          <p>Builds and manages relationships with coaching institutes, colleges & universities across India.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Student Stories</span>
+      <h2>What Students Say About Us</h2>
+      <p>Real feedback from students who found their path through Campus Seva.</p>
+    </div>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I was completely confused about which coaching to join for JEE. Campus Seva gave me honest comparisons between institutes in Kota — no agent pressure, just facts."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AK</div>
+          <div><div class="testi-name">Aman Kumar</div><div class="testi-sub">JEE Aspirant, Kota</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Found my engineering college through Campus Seva's listings. The direct admission support saved me weeks of running around for paperwork."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">DS</div>
+          <div><div class="testi-name">Divya Sharma</div><div class="testi-sub">B.Tech Student, Punjab</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Campus Seva's abroad team helped me get a scholarship at a US university — completely free of charge. I still find that hard to believe."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RV</div>
+          <div><div class="testi-name">Rohit Verma</div><div class="testi-sub">MS Student, USA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CTA BAND ══════════════ -->
+<div class="cta-band">
+  <div class="container" style="position:relative;z-index:1">
+    <h2>Let's Find Your Right Path Together</h2>
+    <p>Whether it's a coaching institute, college, hostel, or a university abroad — Campus Seva is here to guide you, free of charge.</p>
+    <div class="cta-btns">
+      <button class="btn-white" onclick="window.location.href='https://campusseva.com/contact-us/'">Get Free Guidance 🎓</button>
+      <a href="https://wa.me/917075283028" target="_blank" class="btn-cta-outline">💬 WhatsApp Us</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+<!-- jQuery + Owl Carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+jQuery(document).ready(function($){
+  $('.founder-slider').owlCarousel({
+    items:1,
+    loop:true,
+    margin:0,
+    dots:true,
+    nav:false,
+    autoplay:true,
+    autoplayTimeout:6000,
+    autoplayHoverPause:true,
+    smartSpeed:500,
+    animateOut:'fadeOut',
+    animateIn:'fadeIn'
+  });
+});
+</script>
+</body>
+</html>
