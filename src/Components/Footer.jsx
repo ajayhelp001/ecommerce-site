@@ -75,7 +75,7 @@ const Footer = () => {
                             <ul className="linkGroup list-unstyled">
                                 {
                                     infomations.map((links, index) => 
-                                        <li key={index}><Link to={links.linkUrl} className="footer_Links"><span>{links.LinkTitle}</span></Link></li>
+                                        <li key={index}><Link to={links.linkUrl} className="footer_Links">{links.LinkTitle}</Link></li>
                                     )
                                 }
                             </ul>

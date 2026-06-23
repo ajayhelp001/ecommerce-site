@@ -30,6 +30,19 @@ const IndexPage = () => {
         })
     }, [])
 
+    
+  const createSlug = (title) => {
+      return title
+        .toLowerCase()
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+    };
+
+
   return (
     <>
         <section className="herosection m-0">
@@ -101,12 +114,13 @@ const IndexPage = () => {
                     Array.isArray(postData) && postData.map((post, index) => (
                         <div key={index} className="col-lg-4 col-sm-6">
                             <PostCard
-                                postImg={post.image? post.image : '/assets/images/blog-6.jpg'}
+                                postImg={post.image? post.image : `/assets/images/blog-${post.id <= 6 ? index + 1 : 6}.jpg`}
                                 postTitle={post.title}
                                 postDiscription={post.body}
                                 postViews={post.views}
                                 postCommentCount={post.userId}
                                 postTags={post.tags[0]}
+                                postLink={`/blog/${createSlug(post.title)}`}
                             />
                         </div>
                     ))}

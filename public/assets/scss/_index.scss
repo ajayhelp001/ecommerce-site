@@ -1125,6 +1125,10 @@ section{
             & .productBody {
                 & .overlay {
                     padding-bottom: 10px;
+                    & .themebtn {
+                        padding: 4px 10px;
+                        font-size: 12px;
+                    }
                 }
                 & .viewicon{
                     // top: 7px;

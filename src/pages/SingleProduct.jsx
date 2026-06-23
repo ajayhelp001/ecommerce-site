@@ -6,6 +6,8 @@ import ProductSlider from '../Components/ProductSlider';
 import { useDispatch } from 'react-redux';
 import reducer, { add } from '../ProductStore/slice';
 import ReviewForm from '../Components/ReviewForm';
+import SectionHeading from '../GlobelComponent/SectionHeading';
+import ProductCard from '../GlobelComponent/ProductCard';
 
 
 
@@ -36,22 +38,40 @@ const SingleProduct = () => {
 
     const { name } = useParams();
     const [data, setData] = useState(null);
+    const [allProducts, setAllProducts] = useState([]);
+    const [relatedProducts, setRelatedProducts] = useState([]);
 
     useEffect(() => {
-
-        fetch("https://dummyjson.com/products?limit=100")
-        .then((res) => res.json())
-        .then((result) => {
-
-            const slug = name.toLowerCase();
-            const product = result.products.find((item) => {
-            const itemSlug = item.title.toLowerCase().replaceAll(" ", "-");
-            return itemSlug === slug;
+        const fetchProducts = async () => {
+            fetch("https://dummyjson.com/products")
+            .then((res) => res.json())
+            .then((result) => {
+    
+                setAllProducts(result.products);
+                const slug = name.toLowerCase();
+                const product = result.products.find((item) => {
+                const itemSlug = item.title.toLowerCase().replaceAll(" ", "-");
+                return itemSlug === slug;
+                });
+                setData(product);
             });
-            setData(product);
-        });
+        }
+        fetchProducts();
 
     }, [name]);
+
+
+    useEffect(() => {
+        if (!data) return;
+        const related = allProducts.filter(item =>
+            item.category === data.category &&
+            item.id !== data.id
+        );
+        setRelatedProducts(related);
+    }, [data, allProducts]);
+
+    // console.log(relatedProducts);
+    
 
     const [productQuntity, setProductQuntity] = useState(1)
 
@@ -121,6 +141,7 @@ const SingleProduct = () => {
         handelCheckout();
         handleAddToCart();
     }
+    
 
     const tabContent = {
         Description: (
@@ -275,10 +296,29 @@ const SingleProduct = () => {
                 <ReviewForm productId={data?.id}/>
             </>
         ),
-        };
+    };
 
 
-        
+    // Reated Products
+
+// const [relatedProducts, setRelatedProducts] = useState([]);
+
+// useEffect(() => {
+//     if (!data?.category) return;
+
+//     fetch(`https://dummyjson.com/products/category/${data.category}`)
+//         .then(res => res.json()).then(result => {
+//         const filtered = result.products.filter(
+//             item => item.id !== data.id
+//         );
+
+//         setRelatedProducts(filtered);
+//     });
+
+// }, [data]);
+
+
+
   return (
     <>
       <BreadCrumb/>
@@ -307,7 +347,8 @@ const SingleProduct = () => {
                                                 <li>{finalRating ? finalRating.toFixed(2) : data?.rating} <span><img src="/assets/images/icon/start.svg" alt="star" /></span></li>
                                             </ul>
                                         </div>
-                                        <div className="col-auto"><div className="review"> ({data?.reviews?.length} Reviews)</div></div>
+                                        <div className="col-auto"><div className="review"> ({totalReviewCount ? totalReviewCount : 0} Reviews)</div></div>
+                                        {/* <div className="col-auto"><div className="review"> ({data?.reviews?.length} Reviews)</div></div> */}
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -394,11 +435,46 @@ const SingleProduct = () => {
                     </div>
                 </div>
             </section>
+                    <section className='trendingProduct'>
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <SectionHeading mianHeading={'Related Products'} subHeading={'Best Selling Product'}/>
+                    </div>
+                </div>
+                <div className="row g-sm-3 g-2">
+                {
+                    relatedProducts.map((product, index) =>
+                        <div key={index} className="col-xl-3 col-md-4 col-6">
+                            <ProductCard
+                                productId={product.id}
+                                productImg1={product.images?.[0] || product.thumbnail}
+                                productImg2={product.thumbnail}
+                                productOffer={product.discountPercentage}
+                                // productTag={product.tags?.[0] || ''}
+                                productWishlistLink=""
+                                productLink={`/product/${product.title.toLowerCase().replace(/\s+/g, "-")}`}
+                                productTitle={product.title}
+                                productCategory={product.category}
+                                productPrice={product.price}
+                                productOfferPrice={product.price}
+                                productRating={product.rating}
+                                productTotalRating={product.reviews?.length || 0}
+                            />
+                        </div>
+                    )
+                }
+                </div>
+            </div>
+        </section>
         </>
 
         
       )
         : (<section className='p_details_section'><div className="container"><h2>Loading...</h2></div></section>)}
+
+
+
     </>
   )
 }

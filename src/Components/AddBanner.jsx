@@ -18,7 +18,7 @@ const AddBanner = ({productBgImg, productName, ProductDiscount, ProductDiscountP
                                 <div className="col-12 productName">{productName}</div>
                                 <div className="col-12 discount">{ProductDiscount}</div>
                                 <div className="col-12 productDetail">{ProductDetail} <span>{ProductDiscountPersent}%</span> off!</div>
-                                <div className="col-12"><ThemeButton btnLink={ProductLink} btnTitle={productBtnName}/></div>
+                                <div className="col-12"><ThemeButton btnLink={ProductLink} btnFill={true} btnTitle={productBtnName}/></div>
                             </div>
                         </div>
                     </div>

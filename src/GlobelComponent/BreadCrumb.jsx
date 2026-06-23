@@ -9,7 +9,7 @@ const BreadCrumb = ({pageTitle}) => {
     <section className="breadcrumbStylr m-0">
         <div className="container innerfluid h-100">
             <div className="row h-100 align-itemscenter flex-column justify-content-center">
-                <div className="col-12"><div className="pageheading text-capitalize"><span>{pathname.join(" ")}</span></div></div>
+                <div className="col-12"><div className="pageheading text-capitalize"><span>{pathname[pathname.length - 1].replaceAll('-', ' ')}</span></div></div>
                 <div className="col-auto mx-auto">
                     <nav aria-label="breadcrumb" className="breadcrumbs">
                         <ol className="breadcrumb">
@@ -17,10 +17,13 @@ const BreadCrumb = ({pageTitle}) => {
                         {
                             pathname.map((value, index) => {
                                 const to = `/${pathname.slice(0, index + 1).join('/')}`;
-                                const name = value.charAt(0).toUpperCase().replaceAll("-", " ") + value.slice(1);
+                                const name = value.replaceAll("-", " ").replace(/\b\w/g, char => char.toUpperCase());
+                                const isLast = index === pathname.length - 1;
                                 return (
                                     <>
-                                        <li className="breadcrumb-item" key={index}> <Link to={to}>{name}</Link> </li>
+                                        <li className={`breadcrumb-item ${isLast ? 'text-light' : ''}`} key={index} aria-current={isLast ? "page" : undefined}>
+                                          {isLast ? name : <Link to={to}>{name}</Link> }  
+                                        </li>
                                     </>
                                 );
                             })

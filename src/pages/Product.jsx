@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import ProductAdd from '../GlobelComponent/ProductAdd';
 
 const Product = () => {
+    const [currentPage, setCurrentPage] = useState(1);
   const sortOptions = [
     { value: 'Default Sorting', label: 'Default Sorting' },
     { value: 'Low to High', label: 'Low to High' },
